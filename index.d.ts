@@ -1,15 +1,22 @@
 import { Server, IncomingMessage, ServerResponse } from 'http';
 
+interface IRequest extends IncomingMessage {}
+
+interface IResponse extends ServerResponse {
+  send(
+    data: unknown,
+    code?: number,
+    headers?: Record<string, number | string | string[]>,
+  ): void;
+}
+
 type Middleware = (
-  req: IncomingMessage,
-  res: ServerResponse,
+  req: IRequest,
+  res: IResponse,
   next: (error?: unknown) => void,
 ) => void | Promise<unknown>;
 
-type Handler = (
-  req: IncomingMessage,
-  res: ServerResponse,
-) => void | Promise<unknown>;
+type Handler = (req: IRequest, res: IResponse) => void | Promise<unknown>;
 
 interface IRouter {
   get(path: string, handler: Handler): void;
@@ -35,9 +42,7 @@ interface IRouter {
   use(path?: string, ...middlewares: Array<Middleware>): void;
 }
 
-interface IPureHttp extends IRouter {
-  listen(port: number, callback: void): Server;
-}
+interface IPureHttp extends Server, IRouter {}
 
 declare function Router(): IRouter;
 

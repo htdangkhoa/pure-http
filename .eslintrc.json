@@ -14,6 +14,11 @@
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
     "no-bitwise": ["error", { "allow": ["~"] }],
     "no-cond-assign": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "no-restricted-syntax": [
+      "error",
+      "WithStatement",
+      "BinaryExpression[operator='in']"
+    ]
   }
 }
