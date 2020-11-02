@@ -1,7 +1,29 @@
 {
   "name": "pure-http",
-  "version": "0.0.1",
+  "version": "0.0.0",
+  "description": "🚂 🚂 🚂 An alternative Express.js 🚂 🚂 🚂",
+  "keywords": [
+    "pure-http",
+    "express",
+    "http",
+    "rest",
+    "restful",
+    "app",
+    "api"
+  ],
+  "homepage": "https://github.com/htdangkhoa/pure-http",
+  "bugs": {
+    "url": "https://github.com/htdangkhoa/pure-http/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/htdangkhoa/pure-http.git"
+  },
   "license": "MIT",
+  "author": "htdangkhoa <huynhtran.dangkhoa@gmail.com> (https://github.com/htdangkhoa)",
+  "contributors": [
+    "huynhtran.dangkhoa@gmail.com"
+  ],
   "main": "index.js",
   "types": "index.d.ts",
   "dependencies": {},
