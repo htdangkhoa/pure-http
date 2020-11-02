@@ -1,6 +1,6 @@
 {
   "name": "pure-http",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "🚂 🚂 🚂 An alternative Express.js 🚂 🚂 🚂",
   "keywords": [
     "pure-http",
@@ -34,8 +34,5 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.1.2"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }
