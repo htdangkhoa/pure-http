@@ -1,7 +1,7 @@
 {
   "name": "pure-http",
   "version": "0.0.1",
-  "description": "🚂 🚂 🚂 An alternative Express.js 🚂 🚂 🚂",
+  "description": "The simple web framework for Node.js with zero dependencies.",
   "keywords": [
     "pure-http",
     "express",
