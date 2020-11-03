@@ -1,8 +1,8 @@
-import PureHttp from './lib/pure-http';
-import Router from './lib/router';
+const PureHttp = require('./lib/pure-http');
+const Router = require('./lib/router');
 
 const pureHttp = () => new PureHttp();
 
-export { Router };
+module.exports = pureHttp;
 
-export default pureHttp;
+module.exports.Router = Router;
