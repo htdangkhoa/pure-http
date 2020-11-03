@@ -1,6 +1,6 @@
 {
   "name": "pure-http",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "The simple web framework for Node.js with zero dependencies.",
   "keywords": [
     "pure-http",
@@ -8,8 +8,10 @@
     "http",
     "rest",
     "restful",
-    "app",
-    "api"
+    "framework",
+    "router",
+    "server",
+    "webserver"
   ],
   "homepage": "https://github.com/htdangkhoa/pure-http",
   "bugs": {
@@ -26,6 +28,13 @@
   ],
   "main": "index.js",
   "types": "index.d.ts",
+  "files": [
+    "lib/",
+    "index.js",
+    "index.d.ts",
+    "LICENSE",
+    "README.md"
+  ],
   "dependencies": {},
   "devDependencies": {
     "eslint": "^7.12.1",
@@ -34,5 +43,8 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.1.2"
+  },
+  "engines": {
+    "node": ">= 8.x"
   }
 }
