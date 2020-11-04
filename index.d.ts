@@ -1,31 +1,33 @@
-import { Server, IncomingMessage, ServerResponse } from 'http';
+import net from 'net';
+import http from 'http';
+import https from 'https';
 
 declare namespace PureHttp {
-  interface IRequest extends IncomingMessage {
+  export interface IRequest extends http.IncomingMessage {
     originalUrl: string;
 
-    location: ?string;
+    location: string | undefined;
 
-    protocol: ?string;
+    protocol: string | undefined;
 
-    host: ?string;
+    host: string | undefined;
 
-    hostname: ?string;
+    hostname: string | undefined;
 
-    port: ?string;
+    port: string | undefined;
 
-    pathname: ?string;
+    pathname: string | undefined;
 
-    search: ?string;
+    search: string | undefined;
 
-    query: ?Record<string, string>;
+    query: Record<string, string> | undefined;
 
-    hash: ?string;
+    hash: string | undefined;
 
-    header(name: string): string;
+    header(name: string): string | undefined;
   }
 
-  interface IResponse extends ServerResponse {
+  export interface IResponse extends http.ServerResponse {
     header(name: string, value: number | string | ReadonlyArray<string>): void;
 
     send(
@@ -51,15 +53,18 @@ declare namespace PureHttp {
     ): void;
   }
 
-  type Middleware = (
+  export type Middleware = (
     req: IRequest,
     res: IResponse,
     next: (error?: unknown) => void,
   ) => void | Promise<unknown>;
 
-  type Handler = (req: IRequest, res: IResponse) => void | Promise<unknown>;
+  export type Handler = (
+    req: IRequest,
+    res: IResponse,
+  ) => void | Promise<unknown>;
 
-  interface IRouter {
+  export interface IRouter {
     get(path: string, handler: Handler): void;
 
     post(path: string, handler: Handler): void;
@@ -83,7 +88,11 @@ declare namespace PureHttp {
     use(path?: string, ...middlewares: Array<Middleware>): void;
   }
 
-  interface IPureHttp extends Server, IRouter {}
+  export interface IPureHttp extends net.Server, IRouter {}
+
+  export interface IOptions {
+    server: http.Server | https.Server;
+  }
 }
 
 declare function pureHttp(): PureHttp.IPureHttp;

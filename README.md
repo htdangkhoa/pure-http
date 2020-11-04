@@ -18,6 +18,8 @@ const pureHttp = require('pure-http');
 const app = pureHttp();
 
 app.get('/', (req, res) => {
-  res.send('Hello world);
+  res.send('Hello world');
 });
+
+app.listen(3000);
 ```
