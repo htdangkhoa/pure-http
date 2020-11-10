@@ -43,6 +43,10 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
+    "express": "^4.17.1",
+    "fastify": "^3.8.0",
+    "fastify-express": "^0.3.2",
+    "polka": "^0.5.2",
     "prettier": "^2.1.2"
   },
   "engines": {

@@ -55,7 +55,7 @@ const app = pureHttp({ server });
 app.listen(3000);
 ```
 
-## Options:
+## Options
 
 - `server`: Allows to optionally override the HTTP server instance to be used
 
@@ -68,3 +68,41 @@ app.listen(3000);
 - `onNotFound`: A handler when no route definitions were matched.
 
   > Default: `((req, res) => res.send("Cannot " + req.method + " " + req.url))`.
+
+## Router
+
+```js
+const { Router } = require('pure-http');
+
+const router = Router();
+
+router.get('/', (req, res) => {
+  res.send('Hello world');
+});
+
+/* ... */
+
+const app = require('pure-http');
+
+app.use('/api', router);
+
+app.listen(3000);
+```
+
+## Benchmark
+
+Results are taken after 1 warm-up run. The tool used for results is the following:
+
+```bash
+$ wrk -t8 -c100 -d30s http://localhost:3000/user/123
+```
+
+> Please remember that your application code is most likely the slowest part of your application!
+> Switching from Express to pure-http will (likely) not guarantee the same performance gains.
+
+| Framework     |    Version | Requests/sec |
+| ------------- | ---------: | -----------: |
+| **pure-http** | **latest** |   **36,012** |
+| polka         |      0.5.2 |       35,538 |
+| Fastify       |      3.8.0 |       17,576 |
+| express       |     4.17.1 |       15,025 |
