@@ -1,9 +1,10 @@
 import net from 'net';
+import tls from 'tls';
 import http from 'http';
-import https from 'https';
+import http2 from 'http2';
 
 declare namespace PureHttp {
-  export interface IRequest extends http.IncomingMessage {
+  export interface IRequest {
     originalUrl: string;
 
     location: string | undefined;
@@ -27,7 +28,11 @@ declare namespace PureHttp {
     header(name: string): string | undefined;
   }
 
-  export interface IResponse extends http.ServerResponse {
+  export interface IRequestHttp extends http.IncomingMessage, IRequest {}
+
+  export interface IRequestHttp2 extends http2.Http2ServerRequest, IRequest {}
+
+  export interface IResponse {
     header(name: string, value: number | string | ReadonlyArray<string>): void;
 
     send(
@@ -57,9 +62,15 @@ declare namespace PureHttp {
     redirect(status: number, url: string): void;
   }
 
+  export interface IResponseHttp extends http.ServerResponse, IResponse {}
+
+  export interface IResponseHttp2
+    extends http2.Http2ServerResponse,
+      IResponse {}
+
   export type Handler = (
-    req: IRequest,
-    res: IResponse,
+    req: IRequestHttp | IRequestHttp2,
+    res: IResponseHttp | IResponseHttp2,
     next: (error?: unknown) => void,
   ) => void | Promise<unknown>;
 
@@ -87,22 +98,29 @@ declare namespace PureHttp {
     use(path?: string, ...middlewares: Array<Handler>): void;
   }
 
-  export interface IPureHttp extends net.Server, IRouter {}
+  export interface IPureHttpServer extends net.Server, IRouter {}
+
+  export interface IPureHttpSecureServer extends tls.Server, IRouter {}
 
   export interface IOptions {
-    server?: http.Server | https.Server;
+    server?: net.Server | tls.Server;
 
-    onNotFound?: (req: IRequest, res: IResponse) => void | Promise<unknown>;
+    onNotFound?: (
+      req: IRequestHttp | IRequestHttp2,
+      res: IResponseHttp | IResponseHttp2,
+    ) => void | Promise<unknown>;
 
     onError?: (
       error: unknown,
-      req: IRequest,
-      res: IResponse,
+      req: IRequestHttp | IRequestHttp2,
+      res: IResponseHttp | IResponseHttp2,
     ) => void | Promise<unknown>;
   }
 }
 
-declare function pureHttp(options?: PureHttp.IOptions): PureHttp.IPureHttp;
+declare function pureHttp(
+  options?: PureHttp.IOptions,
+): PureHttp.IPureHttpServer | PureHttp.IPureHttpSecureServer;
 
 declare function Router(prefix?: string): PureHttp.IRouter;
 
