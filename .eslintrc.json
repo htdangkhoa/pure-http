@@ -21,6 +21,7 @@
       "BinaryExpression[operator='in']"
     ],
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "no-return-await": "off"
+    "no-return-await": "off",
+    "prefer-destructuring": ["error", { "object": false, "array": false }]
   }
 }

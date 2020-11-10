@@ -51,6 +51,10 @@ declare namespace PureHttp {
       code?: number,
       headers?: Record<string, number | string | string[]>,
     ): void;
+
+    redirect(url: string, status?: number): void;
+
+    redirect(status: number, url: string): void;
   }
 
   export type Handler = (
@@ -88,9 +92,9 @@ declare namespace PureHttp {
   export interface IOptions {
     server?: http.Server | https.Server;
 
-    defaultRoute?: (req: IRequest, res: IResponse) => void | Promise<unknown>;
+    onNotFound?: (req: IRequest, res: IResponse) => void | Promise<unknown>;
 
-    errorHandler?: (
+    onError?: (
       error: unknown,
       req: IRequest,
       res: IResponse,
