@@ -53,51 +53,54 @@ declare namespace PureHttp {
     ): void;
   }
 
-  export type Middleware = (
+  export type Handler = (
     req: IRequest,
     res: IResponse,
     next: (error?: unknown) => void,
   ) => void | Promise<unknown>;
 
-  export type Handler = (
-    req: IRequest,
-    res: IResponse,
-  ) => void | Promise<unknown>;
-
   export interface IRouter {
-    get(path: string, handler: Handler): void;
+    get(path: string, ...handler: Array<Handler>): void;
 
-    post(path: string, handler: Handler): void;
+    post(path: string, ...handler: Array<Handler>): void;
 
-    put(path: string, handler: Handler): void;
+    put(path: string, ...handler: Array<Handler>): void;
 
-    patch(path: string, handler: Handler): void;
+    patch(path: string, ...handler: Array<Handler>): void;
 
-    delete(path: string, handler: Handler): void;
+    delete(path: string, ...handler: Array<Handler>): void;
 
-    head(path: string, handler: Handler): void;
+    head(path: string, ...handler: Array<Handler>): void;
 
-    options(path: string, handler: Handler): void;
+    options(path: string, ...handler: Array<Handler>): void;
 
-    trace(path: string, handler: Handler): void;
+    trace(path: string, ...handler: Array<Handler>): void;
 
-    all(path: string, handler: Handler): void;
+    all(path: string, ...handler: Array<Handler>): void;
 
-    use(...middlewares: Array<Middleware>): void;
+    use(...middlewares: Array<Handler>): void;
 
-    use(path?: string, ...middlewares: Array<Middleware>): void;
+    use(path?: string, ...middlewares: Array<Handler>): void;
   }
 
   export interface IPureHttp extends net.Server, IRouter {}
 
   export interface IOptions {
-    server: http.Server | https.Server;
+    server?: http.Server | https.Server;
+
+    defaultRoute?: (req: IRequest, res: IResponse) => void | Promise<unknown>;
+
+    errorHandler?: (
+      error: unknown,
+      req: IRequest,
+      res: IResponse,
+    ) => void | Promise<unknown>;
   }
 }
 
-declare function pureHttp(): PureHttp.IPureHttp;
+declare function pureHttp(options?: PureHttp.IOptions): PureHttp.IPureHttp;
 
-declare function Router(): PureHttp.IRouter;
+declare function Router(prefix?: string): PureHttp.IRouter;
 
 declare module 'pure-http' {
   export = pureHttp;

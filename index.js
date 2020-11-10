@@ -1,8 +1,10 @@
-const PureHttp = require('./lib/pure-http');
+const pureHttp = require('./lib/pure-http');
 const Router = require('./lib/router');
 
-const pureHttp = (options) => new PureHttp(options);
+function router(prefix) {
+  return new Router({ isChild: true, prefix });
+}
+
+pureHttp.Router = router;
 
 module.exports = pureHttp;
-
-module.exports.Router = Router;
