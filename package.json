@@ -1,6 +1,6 @@
 {
   "name": "pure-http",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The simple web framework for Node.js with zero dependencies.",
   "keywords": [
     "pure-http",
