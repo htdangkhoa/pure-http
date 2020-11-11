@@ -98,12 +98,32 @@ declare namespace PureHttp {
     use(path?: string, ...middlewares: Array<Handler>): void;
   }
 
+  export interface ICache {
+    clear(): void;
+
+    has(key: string): boolean;
+
+    get(key: string): unknown;
+
+    set(key: string, value: unknown): void;
+  }
+
+  export interface ICacheOptions {
+    max?: number;
+
+    maxAge?: number;
+
+    stale?: boolean;
+  }
+
   export interface IPureHttpServer extends net.Server, IRouter {}
 
   export interface IPureHttpSecureServer extends tls.Server, IRouter {}
 
   export interface IOptions {
     server?: net.Server | tls.Server;
+
+    cache?: ICache;
 
     onNotFound?: (
       req: IRequestHttp | IRequestHttp2,
@@ -124,8 +144,10 @@ declare function pureHttp(
 
 declare function Router(prefix?: string): PureHttp.IRouter;
 
+declare function Cache(options?: PureHttp.ICacheOptions): PureHttp.ICache;
+
 declare module 'pure-http' {
   export = pureHttp;
 
-  export { Router };
+  export { Router, Cache };
 }
