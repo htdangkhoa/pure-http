@@ -100,10 +100,10 @@ $ wrk -t8 -c100 -d30s http://localhost:3000/user/123
 > Please remember that your application code is most likely the slowest part of your application!
 > Switching from Express to pure-http will (likely) not guarantee the same performance gains.
 
-| Framework                  |    Version | Requests/sec |
-| -------------------------- | ---------: | -----------: |
-| **pure-http (with cache)** | **latest** | **~ 39,115** |
-| pure-http                  |     latest |     ~ 36,012 |
-| polka                      |      0.5.2 |     ~ 35,538 |
-| Fastify                    |      3.8.0 |     ~ 17,576 |
-| express                    |     4.17.1 |     ~ 15,025 |
+| Framework                  |    Version |  Requests/sec |
+| -------------------------- | ---------: | ------------: |
+| **pure-http (with cache)** | **latest** | **\~ 39,115** |
+| pure-http                  |     latest |      ~ 36,012 |
+| polka                      |      0.5.2 |      ~ 35,538 |
+| Fastify                    |      3.8.0 |      ~ 17,576 |
+| express                    |     4.17.1 |      ~ 15,025 |
