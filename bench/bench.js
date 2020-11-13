@@ -47,34 +47,21 @@ const bench = (options) => {
 
           console.log(`Benchmarking ${name}...`);
 
-          return wrk(
-            wrkOptions,
-            async (
-              error,
-              {
-                non2xx3xx,
-                requestsPerSec,
-                transferPerSec,
-                latencyStdevPerc,
-                rpsStdevPerc,
-                ...out
-              },
-            ) => {
-              if (error) return reject(error);
+          return wrk(wrkOptions, async (error, { requestsTotal }) => {
+            if (error) return reject(error);
 
-              if (framework.close) {
-                await framework.close();
-              } else if (framework.server && framework.server.close) {
-                await framework.server.close();
-              } else {
-                await server.close();
-              }
+            if (framework.close) {
+              await framework.close();
+            } else if (framework.server && framework.server.close) {
+              await framework.server.close();
+            } else {
+              await server.close();
+            }
 
-              console.log('✨ Done.');
+            console.log('✨ Done.');
 
-              return resolve({ framework: name, ...out });
-            },
-          );
+            return resolve({ framework: name, requestsTotal });
+          });
         });
 
       return handle().then((result) => results.push(result));
