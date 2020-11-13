@@ -57,7 +57,6 @@ const bench = (options) => {
                 transferPerSec,
                 latencyStdevPerc,
                 rpsStdevPerc,
-                rpsAvg,
                 ...out
               },
             ) => {
@@ -73,7 +72,7 @@ const bench = (options) => {
 
               console.log('✨ Done.');
 
-              return resolve({ framework: name, rpsAvg, ...out });
+              return resolve({ framework: name, ...out });
             },
           );
         });

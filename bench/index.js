@@ -30,7 +30,7 @@ bench({
   duration: commander.duration || '30s',
   threads: commander.threads || 8,
 }).then((results) => {
-  results.sort(({ rpsAvg: a }, { rpsAvg: b }) =>
+  results.sort(({ requestsTotal: a }, { requestsTotal: b }) =>
     a === b ? 0 : a > b ? -1 : 1,
   );
 
