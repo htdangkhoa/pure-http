@@ -6,7 +6,9 @@ const { one, two } = require('./middlewares');
 
 const app = fastify();
 
-app.register(register).then(() => {
+module.exports = async () => {
+  await app.register(register);
+
   app.use(one);
   app.use(two);
 
@@ -16,5 +18,5 @@ app.register(register).then(() => {
     res.end(`User: ${req.params.id}`);
   });
 
-  app.listen(3000);
-});
+  return app;
+};

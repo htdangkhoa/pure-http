@@ -1,7 +1,7 @@
 <h1 align='center'>pure-http</h1>
 
 <div align='center'>
-  <img src='https://raw.githubusercontent.com/htdangkhoa/pure-http/master/art/cover.jpeg' alt='cover' />
+  <img src='./art/cover.jpeg' alt='cover' />
 </div>
 
 ## Installation
@@ -89,7 +89,7 @@ app.use('/api', router);
 app.listen(3000);
 ```
 
-## Benchmark
+## Benchmarks
 
 Results are taken after 1 warm-up run. The tool used for results is the following:
 
@@ -107,3 +107,5 @@ $ wrk -t8 -c100 -d30s http://localhost:3000/user/123
 | polka                      |      0.5.2 |      ~ 35,538 |
 | Fastify                    |      3.8.0 |      ~ 17,576 |
 | express                    |     4.17.1 |      ~ 15,025 |
+
+See more: [BENCHMARKS](./bench)

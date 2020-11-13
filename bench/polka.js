@@ -12,4 +12,4 @@ app.get('/user/:id', (req, res) => {
   res.end(`User: ${req.params.id}`);
 });
 
-app.listen(3000);
+module.exports = () => app;

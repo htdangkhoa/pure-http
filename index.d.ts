@@ -33,6 +33,8 @@ declare namespace PureHttp {
   export interface IRequestHttp2 extends http2.Http2ServerRequest, IRequest {}
 
   export interface IResponse {
+    cache?: ICache;
+
     header(name: string, value: number | string | ReadonlyArray<string>): void;
 
     send(
