@@ -21,9 +21,9 @@ $ node index.js [arguments (options)]
 > Please remember that your application code is most likely the slowest part of your application!
 > Switching from Express to pure-http will (likely) not guarantee the same performance gains.
 
-- Machine: ubuntu-s-1vcpu-1gb-sgp1-01, x86-64, Ubuntu 18.04.5 LTS, Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz, 16GB RAM.
-- Node: `v12.18.4`
-- Run: Fri, 13 Nov 2020 21:07:21
+- **Machine:** Ubuntu-s-1vcpu-1gb-sgp1-01, x86-64, Ubuntu 18.04.5 LTS, Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz, 16GB RAM.
+- **Node:** `v12.18.4`
+- **Run:** Fri, 13 Nov 2020 21:07:21
 
 | Framework                  |    Version | Requests/Sec |     Latency |
 | -------------------------- | ---------: | :----------: | ----------: |
