@@ -53,8 +53,5 @@
   },
   "engines": {
     "node": ">= 8.4.x"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }
