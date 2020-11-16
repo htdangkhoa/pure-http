@@ -1,5 +1,7 @@
 <h1 align='center'>pure-http</h1>
 
+<p align='center'>Bring the middleware and router to native http.</p>
+
 <div align='center'>
   <img src='./art/cover.jpeg' alt='cover' />
 </div>
@@ -107,3 +109,9 @@ app.listen(3000);
 | fastify                    |      3.8.0 |   ~ 2,702    |     35.54ms |
 
 See more: [BENCHMARKS](./bench)
+
+## License
+
+The code in this project is released under the [MIT License](./LICENSE).
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhtdangkhoa%2Fpure-http.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhtdangkhoa%2Fpure-http?ref=badge_large)
