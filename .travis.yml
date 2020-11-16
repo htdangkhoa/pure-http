@@ -4,6 +4,6 @@ before_install:
   - yarn install --ignore-engines
 
 node_js:
-  - 8.4.0
   - 10
+  - 12
   - 14
