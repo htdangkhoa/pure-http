@@ -2,6 +2,16 @@
 
 <p align='center'>Bring the middleware and router to native http.</p>
 
+<p align='center'>
+  <a href="https://www.codefactor.io/repository/github/htdangkhoa/pure-http">
+    <img src="https://www.codefactor.io/repository/github/htdangkhoa/pure-http/badge" alt="codefactor" />
+  </a>
+
+  <a href='https://travis-ci.org/github/htdangkhoa/pure-http'>
+    <img src='https://travis-ci.com/htdangkhoa/pure-http.svg?branch=master' alt='build' />
+  </a>
+</p>
+
 <div align='center'>
   <img src='./art/cover.jpeg' alt='cover' />
 </div>
