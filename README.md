@@ -5,6 +5,8 @@
 </div>
 
 ## Installation
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhtdangkhoa%2Fpure-http.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhtdangkhoa%2Fpure-http?ref=badge_shield)
+
 
 ```bash
 $ npm install --save pure-http
@@ -107,3 +109,7 @@ app.listen(3000);
 | fastify                    |      3.8.0 |   ~ 2,702    |     35.54ms |
 
 See more: [BENCHMARKS](./bench)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhtdangkhoa%2Fpure-http.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhtdangkhoa%2Fpure-http?ref=badge_large)
