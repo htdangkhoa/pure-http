@@ -77,27 +77,27 @@ declare namespace PureHttp {
   ) => void | Promise<unknown>;
 
   export interface IRouter {
-    get(path: string, ...handler: Array<Handler>): void;
+    get(path: string, ...handler: Array<Handler>): IRouter;
 
-    post(path: string, ...handler: Array<Handler>): void;
+    post(path: string, ...handler: Array<Handler>): IRouter;
 
-    put(path: string, ...handler: Array<Handler>): void;
+    put(path: string, ...handler: Array<Handler>): IRouter;
 
-    patch(path: string, ...handler: Array<Handler>): void;
+    patch(path: string, ...handler: Array<Handler>): IRouter;
 
-    delete(path: string, ...handler: Array<Handler>): void;
+    delete(path: string, ...handler: Array<Handler>): IRouter;
 
-    head(path: string, ...handler: Array<Handler>): void;
+    head(path: string, ...handler: Array<Handler>): IRouter;
 
-    options(path: string, ...handler: Array<Handler>): void;
+    options(path: string, ...handler: Array<Handler>): IRouter;
 
-    trace(path: string, ...handler: Array<Handler>): void;
+    trace(path: string, ...handler: Array<Handler>): IRouter;
 
-    all(path: string, ...handler: Array<Handler>): void;
+    all(path: string, ...handler: Array<Handler>): IRouter;
 
-    use(...middlewares: Array<Handler>): void;
+    use(...middlewares: Array<Handler>): IRouter;
 
-    use(path?: string, ...middlewares: Array<Handler>): void;
+    use(path?: string, ...middlewares: Array<Handler>): IRouter;
   }
 
   export interface ICache {
