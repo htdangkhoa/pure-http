@@ -2,6 +2,10 @@
 
 > ⚠️ **WARNING: Results may vary on different devices.**
 
+## Requirement
+
+- [`wrk`](https://github.com/wg/wrk)
+
 ## Usage
 
 ```bash

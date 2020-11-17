@@ -3,6 +3,14 @@
 <p align='center'>Bring the middleware and router to native http.</p>
 
 <p align='center'>
+  <a href='https://depfu.com/github/htdangkhoa/pure-http?project_id=17737'>
+    <img src='https://badges.depfu.com/badges/22cfff5ebd5901cb72e115e69767cad5/count.svg' alt='Depfu' />
+  </a>
+
+  <a href='https://www.npmjs.com/package/pure-http'>
+    <img src='https://img.shields.io/npm/v/pure-http' alt='npm' />
+  </a>
+
   <a href="https://www.codefactor.io/repository/github/htdangkhoa/pure-http">
     <img src="https://www.codefactor.io/repository/github/htdangkhoa/pure-http/badge" alt="codefactor" />
   </a>
