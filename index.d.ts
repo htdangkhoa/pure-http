@@ -37,6 +37,8 @@ declare namespace PureHttp {
 
     header(name: string, value: number | string | ReadonlyArray<string>): void;
 
+    status(code: number): this;
+
     send(
       data: unknown,
       headers?: Record<string, number | string | string[]>,
@@ -77,27 +79,27 @@ declare namespace PureHttp {
   ) => void | Promise<unknown>;
 
   export interface IRouter {
-    get(path: string, ...handler: Array<Handler>): IRouter;
+    get(path: string, ...handler: Array<Handler>): this;
 
-    post(path: string, ...handler: Array<Handler>): IRouter;
+    post(path: string, ...handler: Array<Handler>): this;
 
-    put(path: string, ...handler: Array<Handler>): IRouter;
+    put(path: string, ...handler: Array<Handler>): this;
 
-    patch(path: string, ...handler: Array<Handler>): IRouter;
+    patch(path: string, ...handler: Array<Handler>): this;
 
-    delete(path: string, ...handler: Array<Handler>): IRouter;
+    delete(path: string, ...handler: Array<Handler>): this;
 
-    head(path: string, ...handler: Array<Handler>): IRouter;
+    head(path: string, ...handler: Array<Handler>): this;
 
-    options(path: string, ...handler: Array<Handler>): IRouter;
+    options(path: string, ...handler: Array<Handler>): this;
 
-    trace(path: string, ...handler: Array<Handler>): IRouter;
+    trace(path: string, ...handler: Array<Handler>): this;
 
-    all(path: string, ...handler: Array<Handler>): IRouter;
+    all(path: string, ...handler: Array<Handler>): this;
 
-    use(...middlewares: Array<Handler>): IRouter;
+    use(...middlewares: Array<Handler>): this;
 
-    use(path?: string, ...middlewares: Array<Handler>): IRouter;
+    use(path?: string, ...middlewares: Array<Handler>): this;
   }
 
   export interface ICache {
