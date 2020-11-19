@@ -25,40 +25,129 @@ declare namespace PureHttp {
 
     hash: string | undefined;
 
-    header(name: string): string | undefined;
+    header(name: string): undefined | string | string[];
   }
 
   export interface IRequestHttp extends http.IncomingMessage, IRequest {}
 
   export interface IRequestHttp2 extends http2.Http2ServerRequest, IRequest {}
 
+  export interface IJSONPOptions {
+    escape?: boolean;
+
+    replacer?: (this: any, key: string, value: any) => any;
+
+    spaces?: string | number;
+
+    callbackName: string = 'callback';
+  }
+
+  export type IHeader = Record<string, number | string | string[]>;
+
   export interface IResponse {
     cache?: ICache;
 
-    header(name: string, value: number | string | ReadonlyArray<string>): void;
+    header(name: string, value: number | string | ReadonlyArray<string>): this;
 
     status(code: number): this;
 
+    /* send */
     send(
       data: unknown,
-      headers?: Record<string, number | string | string[]>,
+      cached?: boolean,
+      code?: number,
+      headers?: IHeader,
+    ): void;
+
+    send(
+      data: unknown,
+      cached?: boolean,
+      headers?: IHeader,
+      code?: number,
     ): void;
 
     send(
       data: unknown,
       code?: number,
-      headers?: Record<string, number | string | string[]>,
+      cached?: boolean,
+      headers?: IHeader,
     ): void;
 
-    json(
-      data: Record<string, any>,
-      headers?: Record<string, number | string | string[]>,
-    ): void;
-
-    json(
-      data: Record<string, any>,
+    send(
+      data: unknown,
       code?: number,
-      headers?: Record<string, number | string | string[]>,
+      headers?: IHeader,
+      cached?: boolean,
+    ): void;
+
+    send(
+      data: unknown,
+      headers?: IHeader,
+      cached?: boolean,
+      code?: number,
+    ): void;
+
+    send(
+      data: unknown,
+      headers?: IHeader,
+      code?: number,
+      cached?: boolean,
+    ): void;
+
+    /* json */
+    json(
+      data?: Record<string, any>,
+      cached?: boolean,
+      code?: number,
+      headers?: IHeader,
+    ): void;
+
+    json(
+      data?: Record<string, any>,
+      cached?: boolean,
+      headers?: IHeader,
+      code?: number,
+    ): void;
+
+    json(
+      data?: Record<string, any>,
+      code?: number,
+      cached?: boolean,
+      headers?: IHeader,
+    ): void;
+
+    json(
+      data?: Record<string, any>,
+      code?: number,
+      headers?: IHeader,
+      cached?: boolean,
+    ): void;
+
+    json(
+      data?: Record<string, any>,
+      headers?: IHeader,
+      cached?: boolean,
+      code?: number,
+    ): void;
+
+    json(
+      data?: Record<string, any>,
+      headers?: IHeader,
+      code?: number,
+      cached?: boolean,
+    ): void;
+
+    /* jsonp */
+    jsonp(
+      data?: Record<string, any>,
+      cached?: boolean,
+      options?: IJSONPOptions,
+    ): void;
+
+    jsonp(
+      data?: Record<string, any>,
+      options?: IJSONPOptions,
+      cached?: boolean,
     ): void;
 
     redirect(url: string, status?: number): void;
