@@ -18,6 +18,14 @@
   <a href='https://travis-ci.org/github/htdangkhoa/pure-http'>
     <img src='https://travis-ci.com/htdangkhoa/pure-http.svg?branch=master' alt='build' />
   </a>
+
+  <a href='https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base'>
+    <img src='https://img.shields.io/badge/eslint-airbnb-4B32C3.svg' alt='ESLint: airbnb-base' />
+  </a>
+
+  <a href='https://github.com/prettier/prettier'>
+    <img src='https://img.shields.io/badge/code_style-prettier-ff69b4.svg' alt='code style: prettier' />
+  </a>
 </p>
 
 <div align='center'>
