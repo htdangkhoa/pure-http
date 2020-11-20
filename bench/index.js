@@ -30,13 +30,21 @@ bench({
   duration: commander.duration || '30s',
   threads: commander.threads || 8,
 }).then((results) => {
-  results.sort(({ latencyAvg: a }, { latencyAvg: b }) => {
-    const latenA = parseFloat(a.replace('ms', ''));
+  const r = results
+    .sort(({ latencyAvg: a }, { latencyAvg: b }) => {
+      const latenA = parseFloat(a.replace('ms', ''));
 
-    const latenB = parseFloat(b.replace('ms', ''));
+      const latenB = parseFloat(b.replace('ms', ''));
 
-    return latenA === latenB ? 0 : latenA > latenB ? 1 : -1;
-  });
+      return latenA === latenB ? 0 : latenA > latenB ? 1 : -1;
+    })
+    .reduce((origin, obj, index) => {
+      const o = origin;
 
-  console.table(results);
+      o[index + 1] = obj;
+
+      return o;
+    }, {});
+
+  console.table(r);
 });

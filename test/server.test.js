@@ -6,13 +6,13 @@ const request = supertest(app);
 
 describe('GET /', () => {
   it('An object should be returned.', async () => {
-    await request.get('/').expect({ hello: 'world' });
+    await request.get('/').expect('GET');
   });
 });
 
 describe('POST /', () => {
   it('When a method is not allowed, the http status code should be 405.', async () => {
-    await request.post('/').expect(405);
+    await request.post('/').expect('POST');
   });
 });
 

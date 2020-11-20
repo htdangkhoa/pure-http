@@ -9,7 +9,11 @@ const app = pureHttp({
 app.use([bodyParser.json(), bodyParser.urlencoded({ extended: true })]);
 
 app.get('/', (req, res) => {
-  res.json({ hello: 'world' });
+  res.send('GET');
+});
+
+app.post('/', (req, res) => {
+  res.send('POST');
 });
 
 app.use('/api', router);
