@@ -1,6 +1,6 @@
 const { Router } = require('..');
 
-const router = Router();
+const router = Router('/api');
 
 router
   .get('/hello/:name', (req, res) => {

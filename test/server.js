@@ -16,7 +16,7 @@ app.post('/', (req, res) => {
   res.send('POST');
 });
 
-app.use('/api', router);
+app.use('/', router);
 
 app.listen(3000);
 
