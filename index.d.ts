@@ -7,23 +7,23 @@ declare namespace PureHttp {
   export interface IRequest {
     originalUrl: string;
 
-    location: string | undefined;
+    location?: string;
 
-    protocol: string | undefined;
+    protocol?: string;
 
-    host: string | undefined;
+    host?: string;
 
-    hostname: string | undefined;
+    hostname?: string;
 
-    port: string | undefined;
+    port?: number;
 
-    pathname: string | undefined;
+    path?: string;
 
-    search: string | undefined;
+    search?: string;
 
-    query: Record<string, string> | undefined;
+    query?: Record<string, string>;
 
-    hash: string | undefined;
+    hash?: string;
 
     header(name: string): undefined | string | string[];
   }
@@ -39,7 +39,7 @@ declare namespace PureHttp {
 
     spaces?: string | number;
 
-    callbackName: string = 'callback';
+    callbackName?: string;
   }
 
   export type IHeader = Record<string, number | string | string[]>;

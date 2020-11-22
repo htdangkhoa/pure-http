@@ -1,4 +1,5 @@
 const { Router } = require('..');
+const SubRouter = require('./sub-router');
 
 const router = Router('/api');
 
@@ -15,5 +16,7 @@ router
   .post('/post-body', (req, res) => {
     res.send(req.body);
   });
+
+router.use('/', SubRouter);
 
 module.exports = router;

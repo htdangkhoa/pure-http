@@ -85,7 +85,7 @@ app.listen(3000);
 
 ## Options
 
-- `server`: Allows to optionally override the HTTP server instance to be used
+- `server`: Allows to optionally override the HTTP server instance to be used.
 
   > Default: `undefined`.
 
@@ -116,6 +116,10 @@ app.use('/api', router);
 
 app.listen(3000);
 ```
+
+## API References
+
+You can read more at [API.md](./API.md).
 
 ## Benchmarks
 

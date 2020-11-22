@@ -5,14 +5,20 @@ const app = require('./server');
 const request = supertest(app);
 
 describe('GET /', () => {
-  it('An object should be returned.', async () => {
+  it('A string should be returned.', async () => {
     await request.get('/').expect('GET');
   });
 });
 
 describe('POST /', () => {
-  it('When a method is not allowed, the http status code should be 405.', async () => {
+  it('A string should be returned.', async () => {
     await request.post('/').expect('POST');
+  });
+});
+
+describe('PUT /', () => {
+  it('When a method is not allowed, the http status code should be 405.', async () => {
+    await request.put('/').expect(405);
   });
 });
 
@@ -46,6 +52,12 @@ describe('POST /api/post-body', () => {
     };
 
     await request.post('/api/post-body').send(body).expect(body);
+  });
+});
+
+describe('POST /api/sub-router/test', () => {
+  it('The result should be a string like /api/sub-router/test.', async () => {
+    await request.get('/api/sub-router/test').expect('/api/sub-router/test');
   });
 });
 
