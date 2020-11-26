@@ -41,6 +41,7 @@
   "devDependencies": {
     "body-parser": "^1.19.0",
     "commander": "^6.2.0",
+    "consolidate": "^0.16.0",
     "eslint": "^7.14.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^6.15.0",
@@ -54,7 +55,9 @@
     "pem": "^1.14.4",
     "polka": "^0.5.2",
     "prettier": "^2.2.0",
+    "serve-static": "^1.14.1",
     "supertest": "^6.0.1",
+    "swig": "^1.4.2",
     "wrk": "^1.2.1"
   },
   "engines": {

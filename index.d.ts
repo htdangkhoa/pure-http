@@ -150,9 +150,22 @@ declare namespace PureHttp {
       cached?: boolean,
     ): void;
 
+    /* redirect */
     redirect(url: string, status?: number): void;
 
     redirect(status: number, url: string): void;
+
+    /* render */
+    render(
+      view: string,
+      options?: Record<string, any>,
+      callback?: (error?: unknown, html: string) => void,
+    ): void;
+
+    render(
+      view: string,
+      callback?: (error?: unknown, html: string) => void,
+    ): void;
   }
 
   export interface IResponseHttp extends http.ServerResponse, IResponse {}
@@ -199,6 +212,8 @@ declare namespace PureHttp {
     get(key: string): unknown;
 
     set(key: string, value: unknown): void;
+
+    delete(key: string): boolean;
   }
 
   export interface ICacheOptions {
@@ -217,6 +232,14 @@ declare namespace PureHttp {
     server?: net.Server | tls.Server;
 
     cache?: ICache;
+
+    views?: {
+      dir: string;
+
+      ext: string;
+
+      engine: Function;
+    };
 
     onNotFound?: (
       req: IRequestHttp | IRequestHttp2,

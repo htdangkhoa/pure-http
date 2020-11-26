@@ -1,15 +1,11 @@
 /* eslint-disable */
 const bodyParser = require('body-parser');
-const pureHttp = require('..');
+const pureHttp = require('../..');
+const router = require('./router');
 
 const app = pureHttp();
+
 app.use([bodyParser.json(), bodyParser.urlencoded({ extended: true })]);
-
-const router = pureHttp.Router('/v1');
-
-router.get('/hello/:name', (req, res) => {
-  res.send(`Hello ${req.params.name}!`);
-});
 
 app.use('/api', router);
 

@@ -16,45 +16,55 @@
 
     > Default: `((req, res) => res.send("Cannot " + req.method + " " + req.url))`.
 
+  - `views`: An object to configuration render function.
+
+    - `dir`: A directory for the application's views.
+
+    - `ext`: The default engine extension to use when omitted.
+
+    - `engine`: Registers the given template engine.
+
+    > Default: `undefined`.
+
 - Router Options:
 
   - `prefix`: Allow append the path before each route.
 
     > Default: `undefined`.
 
-#### get(route, handler, handler, [, handler...])
+#### get(route, handler [, handler...])
 
 > Routes HTTP GET requests to the specified path with the specified handler functions.
 
-#### post(route, handler, [, handler...])
+#### post(route, handler [, handler...])
 
 > Routes HTTP POST requests to the specified path with the specified handler functions.
 
-#### put(route, handler, [, handler...])
+#### put(route, handler [, handler...])
 
 > Routes HTTP PUT requests to the specified path with the specified handler functions.
 
-#### patch(route, handler, [, handler...])
+#### patch(route, handler [, handler...])
 
 > Routes HTTP PATCH requests to the specified path with the specified handler functions.
 
-#### delete(route, handler, [, handler...])
+#### delete(route, handler [, handler...])
 
 > Routes HTTP DELETE requests to the specified path with the specified handler functions.
 
-#### head(route, handler, [, handler...])
+#### head(route, handler [, handler...])
 
 > Routes HTTP HEAD requests to the specified path with the specified handler functions.
 
-#### options(route, handler, [, handler...])
+#### options(route, handler [, handler...])
 
 > Routes HTTP OPTIONS requests to the specified path with the specified handler functions.
 
-#### trace(route, handler, [, handler...])
+#### trace(route, handler [, handler...])
 
 > Routes HTTP TRACE requests to the specified path with the specified handler functions.
 
-#### all(route, handler, [, handler...])
+#### all(route, handler [, handler...])
 
 > This method accepts all of HTTP method of the request, such as GET, PUT, POST.
 
@@ -122,11 +132,11 @@ The res object is an enhanced version of Node’s own response object and suppor
 
 > Sets headers on the response.
 
-#### res.json(data, [, options])
+#### res.json(data [, options])
 
 > Sends a JSON response. This method sends a response (with the correct content-type) that is the parameter converted to a JSON string using [JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).<br><br>The parameter can be any JSON type, including object, array, string, Boolean, number, or null, and you can also use it to convert other values to JSON.
 
-#### res.jsonp(data, [, options])
+#### res.jsonp(data [, options])
 
 > Sends a JSON response with JSONP support. This method is identical to res.json(), except that it opts-in to JSONP callback support.
 
@@ -134,11 +144,18 @@ The res object is an enhanced version of Node’s own response object and suppor
 
 > Redirects to the URL derived from the specified path, with specified status, a positive integer that corresponds to an [HTTP status code](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) . If not specified, status defaults to “302 “Found”.
 
-#### res.redirect(path, [status])
+#### res.redirect(path [, status])
 
 > Redirects to the URL derived from the specified path, with specified status, a positive integer that corresponds to an [HTTP status code](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) . If not specified, status defaults to “302 “Found”.
 
-#### res.send(data, [, options])
+#### res.render(view [, options] [, callback])
+
+> Renders a view and sends the rendered HTML string to the client. Optional parameters:
+>
+> - `options`: An object whose properties define local variables for the view.
+> - `callback`: A callback function. If provided, the method returns both the possible error and rendered string, but does not perform an automated response. When an error occurs, the method invokes onError(err, req, res) internally.
+
+#### res.send(data [, options])
 
 > Sends the HTTP response.The body parameter can be a Buffer object, a String, an object, Boolean, or an Array.
 
@@ -163,3 +180,7 @@ The res object is an enhanced version of Node’s own response object and suppor
 #### set(key, value)
 
 > Persist an item to the cache by a given `key` name.
+
+#### delete(key)
+
+> Removes item from cache.

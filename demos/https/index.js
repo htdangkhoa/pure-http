@@ -2,7 +2,7 @@
 const pem = require('pem');
 const https = require('https');
 const bodyParser = require('body-parser');
-const pureHttp = require('..');
+const pureHttp = require('../..');
 
 pem.createCertificate(
   { days: 1, selfSigned: true },

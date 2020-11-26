@@ -1,5 +1,5 @@
 /* eslint-disable */
-const pureHttp = require('..');
+const pureHttp = require('../..');
 
 const app = pureHttp();
 

@@ -1,6 +1,6 @@
 /* eslint-disable */
 const bodyParser = require('body-parser');
-const pureHttp = require('..');
+const pureHttp = require('../..');
 
 const app = pureHttp();
 
