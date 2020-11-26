@@ -16,15 +16,15 @@
 
     > Default: `((req, res) => res.send("Cannot " + req.method + " " + req.url))`.
 
-  - `views`: An object to configuration render function.
+  - `views`: An object to configuration [render](#resrenderview--options--callback) function.
+
+    > Default: `undefined`.
 
     - `dir`: A directory for the application's views.
 
     - `ext`: The default engine extension to use when omitted.
 
     - `engine`: Registers the given template engine.
-
-    > Default: `undefined`.
 
 - Router Options:
 

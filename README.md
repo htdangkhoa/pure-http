@@ -83,7 +83,7 @@ const app = pureHttp({ server });
 app.listen(3000);
 ```
 
-## Options
+## Application Options:
 
 - `server`: Allows to optionally override the HTTP server instance to be used.
 
@@ -96,6 +96,22 @@ app.listen(3000);
 - `onNotFound`: A handler when no route definitions were matched.
 
   > Default: `((req, res) => res.send("Cannot " + req.method + " " + req.url))`.
+
+- `views`: An object to configuration [render](./API.md#resrenderview--options--callback) function.
+
+  > Default: `undefined`.
+
+  - `dir`: A directory for the application's views.
+
+  - `ext`: The default engine extension to use when omitted.
+
+  - `engine`: Registers the given template engine.
+
+- Router Options:
+
+  - `prefix`: Allow append the path before each route.
+
+    > Default: `undefined`.
 
 ## Router
 
