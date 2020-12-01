@@ -159,12 +159,12 @@ declare namespace PureHttp {
     render(
       view: string,
       options?: Record<string, any>,
-      callback?: (error?: unknown, html: string) => void,
+      callback?: (error: unknown, html: string) => void,
     ): void;
 
     render(
       view: string,
-      callback?: (error?: unknown, html: string) => void,
+      callback?: (error: unknown, html: string) => void,
     ): void;
   }
 
@@ -263,7 +263,7 @@ declare function Router(prefix?: string): PureHttp.IRouter;
 declare function Cache(options?: PureHttp.ICacheOptions): PureHttp.ICache;
 
 declare module 'pure-http' {
-  export = pureHttp;
+  export default pureHttp;
 
   export { Router, Cache };
 }
