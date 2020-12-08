@@ -27,7 +27,7 @@
     "huynhtran.dangkhoa@gmail.com"
   ],
   "main": "index.js",
-  "typings": "index.d.ts",
+  "types": "index.d.ts",
   "files": [
     "lib/",
     "index.js",
