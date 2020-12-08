@@ -4,11 +4,15 @@
 
 <p align='center'>
   <a href='https://depfu.com/github/htdangkhoa/pure-http?project_id=17737'>
-    <img src='https://badges.depfu.com/badges/22cfff5ebd5901cb72e115e69767cad5/count.svg' alt='Depfu' />
+    <img src='https://badges.depfu.com/badges/22cfff5ebd5901cb72e115e69767cad5/count.svg' alt='depfu' />
   </a>
 
   <a href='https://www.npmjs.com/package/pure-http'>
     <img src='https://img.shields.io/npm/v/pure-http' alt='npm' />
+  </a>
+
+  <a href="https://bundlephobia.com/result?p=pure-http">
+    <img src="https://badgen.net/bundlephobia/minzip/pure-http" alt="bundle size" />
   </a>
 
   <a href="https://www.codefactor.io/repository/github/htdangkhoa/pure-http">
@@ -20,7 +24,7 @@
   </a>
 
   <a href='https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base'>
-    <img src='https://img.shields.io/badge/eslint-airbnb-4B32C3.svg' alt='ESLint: airbnb-base' />
+    <img src='https://img.shields.io/badge/eslint-airbnb-4B32C3.svg' alt='eslint: airbnb' />
   </a>
 
   <a href='https://github.com/prettier/prettier'>

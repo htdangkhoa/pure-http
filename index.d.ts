@@ -3,7 +3,7 @@ import tls from 'tls';
 import http from 'http';
 import http2 from 'http2';
 
-declare namespace PureHttp {
+declare module 'pure-http' {
   export interface IRequest {
     originalUrl: string;
 
@@ -252,18 +252,14 @@ declare namespace PureHttp {
       res: IResponseHttp | IResponseHttp2,
     ) => void | Promise<unknown>;
   }
-}
 
-declare function pureHttp(
-  options?: PureHttp.IOptions,
-): PureHttp.IPureHttpServer | PureHttp.IPureHttpSecureServer;
+  function pureHttp(
+    options?: IOptions,
+  ): IPureHttpServer | IPureHttpSecureServer;
 
-declare function Router(prefix?: string): PureHttp.IRouter;
-
-declare function Cache(options?: PureHttp.ICacheOptions): PureHttp.ICache;
-
-declare module 'pure-http' {
   export default pureHttp;
 
-  export { Router, Cache };
+  export function Router(prefix?: string): IRouter;
+
+  export function Cache(options?: ICacheOptions): ICache;
 }
