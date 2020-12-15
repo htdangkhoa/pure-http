@@ -40,7 +40,7 @@
   "dependencies": {},
   "devDependencies": {
     "body-parser": "^1.19.0",
-    "commander": "^6.2.0",
+    "commander": "^6.2.1",
     "consolidate": "^0.16.0",
     "eslint": "^7.15.0",
     "eslint-config-airbnb-base": "^14.2.1",
