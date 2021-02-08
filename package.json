@@ -50,7 +50,7 @@
     "express": "^4.17.1",
     "fastify": "^3.8.0",
     "fastify-express": "^0.3.2",
-    "husky": "^4.3.5",
+    "husky": "^5.0.9",
     "mocha": "^8.2.1",
     "pem": "^1.14.4",
     "polka": "^0.5.2",
