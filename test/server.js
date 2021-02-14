@@ -18,4 +18,6 @@ app.post('/', (req, res) => {
 
 app.use('/', router);
 
+app.all('/status', (req, res) => res.status(200).json({ success: true }));
+
 module.exports = app;

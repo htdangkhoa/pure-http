@@ -22,6 +22,12 @@ describe('PUT /', () => {
   });
 });
 
+describe('ALL /status', () => {
+  it('An object should be returned.', async () => {
+    await request.post('/status').expect({ success: true });
+  });
+});
+
 describe('GET /api/hello/{name}', () => {
   it('A string should be returned.', async () => {
     const name = 'Khoa';
