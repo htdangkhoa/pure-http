@@ -4,6 +4,28 @@ import http from 'http';
 import http2 from 'http2';
 
 declare module 'pure-http' {
+  export interface ICookieSerializeOptions {
+    encode?(value: string): string;
+
+    maxAge?: number;
+
+    domain?: string;
+
+    path?: string;
+
+    expires?: Date;
+
+    httpOnly?: boolean;
+
+    secure?: boolean;
+
+    sameSite?: true | false | 'lax' | 'strict' | 'none';
+  }
+
+  export interface ICookieParseOptions {
+    decode?(value: string): string;
+  }
+
   export interface IRequest {
     originalUrl: string;
 
@@ -26,6 +48,10 @@ declare module 'pure-http' {
     hash?: string;
 
     header(name: string): undefined | string | string[];
+
+    cookies: Record<string, string>;
+
+    cookie(name: string, options?: ICookieParseOptions): Record<string, string>;
   }
 
   export interface IRequestHttp extends http.IncomingMessage, IRequest {}
@@ -166,6 +192,8 @@ declare module 'pure-http' {
       view: string,
       callback?: (error: unknown, html: string) => void,
     ): void;
+
+    cookie(name, value, options?: ICookieSerializeOptions): this;
   }
 
   export interface IResponseHttp extends http.ServerResponse, IResponse {}
