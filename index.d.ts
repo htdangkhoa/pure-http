@@ -26,6 +26,10 @@ declare module 'pure-http' {
     decode?(value: string): string;
   }
 
+  export interface ISendFileOptions {
+    headers?: IHeader;
+  }
+
   export interface IRequest {
     originalUrl: string;
 
@@ -194,6 +198,8 @@ declare module 'pure-http' {
     ): void;
 
     cookie(name, value, options?: ICookieSerializeOptions): this;
+
+    sendFile(filePath: string, options?: ISendFileOptions): void;
   }
 
   export interface IResponseHttp extends http.ServerResponse, IResponse {}

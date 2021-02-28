@@ -1,3 +1,4 @@
+const path = require('path');
 const bodyParser = require('body-parser');
 const pureHttp = require('..');
 const router = require('./router');
@@ -19,5 +20,22 @@ app.post('/', (req, res) => {
 app.use('/', router);
 
 app.all('/status', (req, res) => res.status(200).json({ success: true }));
+
+app.get('/set-cookie', (req, res) => {
+  res.cookie('foo', 'bar');
+  res.cookie('ping', 'pong');
+
+  res.send('Ok');
+});
+
+app.post('/set-cookie', (req, res) => {
+  res.send(req.cookies);
+});
+
+app.all('/send-file', (req, res) => {
+  const filePath = path.resolve(process.cwd(), 'tests/index.css');
+
+  res.sendFile(filePath, { headers: { 'Cache-Control': 'no-store' } });
+});
 
 module.exports = app;

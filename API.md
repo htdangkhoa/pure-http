@@ -159,6 +159,19 @@ The res object is an enhanced version of Node’s own response object and suppor
 
 > Sends the HTTP response.The body parameter can be a Buffer object, a String, an object, Boolean, or an Array.
 
+#### res.cookie(name, value [, options])
+
+> Sets cookie name to value. The value parameter may be a string or object converted to JSON.
+> `options`: An object to configuration the [`Set-Cookie`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#attributes) in header.
+
+#### res.sendFile(path, [, options])
+
+> Transfers the file at the given path. Sets the Content-Type response HTTP header field based on the filename’s extension.
+>
+> Options:
+>
+> - `headers`: The addition headers.
+
 #### res.status(code)
 
 > Sets the HTTP status for the response. It is a chainable alias of Node’s [response.statusCode](http://nodejs.org/api/http.html#http_response_statuscode).

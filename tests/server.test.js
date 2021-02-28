@@ -72,3 +72,37 @@ describe('GET /not-found', () => {
     await request.get('/not-found').expect(404);
   });
 });
+
+describe('GET /set-cookie', () => {
+  it(`The headers must have the 'set-cookie'.`, async (done) => {
+    const res = await request.get('/set-cookie');
+
+    const cookies = res.headers['set-cookie'];
+
+    const cookie1 = cookies[0];
+    expect(cookie1).toBe('foo=bar');
+
+    const cookie2 = cookies[1];
+    expect(cookie2).toBe('ping=pong');
+
+    done();
+  });
+});
+
+describe('POST /set-cookie', () => {
+  it(`The cookie must be set in request.`, async () => {
+    await request
+      .post('/set-cookie')
+      .set('Cookie', ['foo=bar', 'ping=pong'])
+      .expect({ foo: 'bar', ping: 'pong' });
+  });
+});
+
+describe('ALL /send-file', () => {
+  it(`The 'content-type' in header should be 'text/css'.`, async () => {
+    await request
+      .post('/send-file')
+      .expect('cache-control', 'no-store')
+      .expect('content-type', 'text/css');
+  });
+});
