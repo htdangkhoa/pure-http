@@ -28,6 +28,12 @@ app.get('/set-cookie', (req, res) => {
   res.send('Ok');
 });
 
+app.post('/clear-cookie', (req, res) => {
+  res.clearCookie('foo').clearCookie('ping');
+
+  res.send('Ok');
+});
+
 app.post('/set-cookie', (req, res) => {
   res.send(req.cookies);
 });

@@ -199,6 +199,8 @@ declare module 'pure-http' {
 
     cookie(name, value, options?: ICookieSerializeOptions): this;
 
+    clearCookie(name, options?: ICookieSerializeOptions): this;
+
     sendFile(filePath: string, options?: ISendFileOptions): void;
   }
 
@@ -274,17 +276,6 @@ declare module 'pure-http' {
 
       engine: Function;
     };
-
-    onNotFound?: (
-      req: IRequestHttp | IRequestHttp2,
-      res: IResponseHttp | IResponseHttp2,
-    ) => void | Promise<unknown>;
-
-    onError?: (
-      error: unknown,
-      req: IRequestHttp | IRequestHttp2,
-      res: IResponseHttp | IResponseHttp2,
-    ) => void | Promise<unknown>;
   }
 
   function pureHttp(

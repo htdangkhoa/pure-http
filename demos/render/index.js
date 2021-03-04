@@ -10,9 +10,9 @@ const pureHttp = require('../..');
 const viewsPath = path.resolve(process.cwd(), 'demos/render/views');
 
 const app = pureHttp({
-  view: {
+  views: {
     dir: viewsPath,
-    extension: 'html',
+    ext: 'html',
     engine: consolidate.swig,
   },
 });

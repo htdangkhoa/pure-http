@@ -1,6 +1,7 @@
 const supertest = require('supertest');
 
 const app = require('./server');
+const { parse: parseCookie } = require('../lib/cookie');
 
 const request = supertest(app);
 
@@ -13,12 +14,6 @@ describe('GET /', () => {
 describe('POST /', () => {
   it('A string should be returned.', async () => {
     await request.post('/').expect('POST');
-  });
-});
-
-describe('PUT /', () => {
-  it('When a method is not allowed, the http status code should be 405.', async () => {
-    await request.put('/').expect(405);
   });
 });
 
@@ -74,16 +69,32 @@ describe('GET /not-found', () => {
 });
 
 describe('GET /set-cookie', () => {
-  it(`The headers must have the 'set-cookie'.`, async (done) => {
+  it(`The 'foo' should be equal 'bar' and the 'ping' should be equal 'pong'.`, async (done) => {
     const res = await request.get('/set-cookie');
 
     const cookies = res.headers['set-cookie'];
 
-    const cookie1 = cookies[0];
-    expect(cookie1).toBe('foo=bar');
+    const cookie1 = parseCookie(cookies[0]);
+    expect(cookie1.foo).toBe('bar');
 
-    const cookie2 = cookies[1];
-    expect(cookie2).toBe('ping=pong');
+    const cookie2 = parseCookie(cookies[1]);
+    expect(cookie2.ping).toBe('pong');
+
+    done();
+  });
+});
+
+describe('POST /clear-cookie', () => {
+  it(`The 'foo' should be empty and the 'ping' should be empty.`, async (done) => {
+    const res = await request.post('/clear-cookie');
+
+    const cookies = res.headers['set-cookie'];
+
+    const cookie1 = parseCookie(cookies[0]);
+    expect(cookie1.foo).toBe('');
+
+    const cookie2 = parseCookie(cookies[1]);
+    expect(cookie2.ping).toBe('');
 
     done();
   });
