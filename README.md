@@ -93,11 +93,11 @@ app.listen(3000);
 
   > Default: `undefined`.
 
-- `onError`: A handler when an error is thrown.
+- `onError`: A handler when an error is thrown (Deprecated: It has been removed from `3.0.0`).
 
   > Default: `((error, req, res) => res.send(error))`.
 
-- `onNotFound`: A handler when no route definitions were matched.
+- `onNotFound`: A handler when no route definitions were matched (Deprecated: It has been removed from `3.0.0`).
 
   > Default: `((req, res) => res.send("Cannot " + req.method + " " + req.url))`.
 
