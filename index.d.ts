@@ -216,6 +216,13 @@ declare module 'pure-http' {
     next: (error?: unknown) => void,
   ) => void | Promise<unknown>;
 
+  export type ErrorHandler = (
+    error: Error,
+    req: IRequestHttp | IRequestHttp2,
+    res: IResponseHttp | IResponseHttp2,
+    next: (error?: unknown) => void,
+  ) => void | Promise<unknown>;
+
   export interface IRouter {
     get(path: string, ...handler: Array<Handler>): this;
 
@@ -238,6 +245,8 @@ declare module 'pure-http' {
     use(...middlewares: Array<Handler>): this;
 
     use(path?: string, ...middlewares: Array<Handler>): this;
+
+    use(errorHandler: ErrorHandler): this;
   }
 
   export interface ICache {
