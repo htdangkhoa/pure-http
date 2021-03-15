@@ -18,8 +18,14 @@ describe('POST /', () => {
 });
 
 describe('ALL /status', () => {
-  it('An object should be returned.', async () => {
-    await request.post('/status').expect({ success: true });
+  it('An object should be returned.', async (done) => {
+    const res = await request.post('/status');
+
+    expect(res.body).toMatchObject({ success: true });
+
+    expect(res.status).toBe(302);
+
+    done();
   });
 });
 
@@ -109,11 +115,29 @@ describe('POST /set-cookie', () => {
   });
 });
 
+describe('GET /jsonp', () => {
+  it('should respond with jsonp', async () => {
+    await request
+      .get('/jsonp')
+      .query({ callback: 'foo' })
+      .expect('content-type', 'text/javascript;charset=utf-8')
+      .expect(200, /foo\(\{"message":"Hello World!"\}\);/);
+  });
+});
+
 describe('ALL /send-file', () => {
-  it(`The 'content-type' in header should be 'text/css'.`, async () => {
+  it(`The 'content-type' in header should be 'text/css;charset=utf-8'.`, async () => {
     await request
       .post('/send-file')
       .expect('cache-control', 'no-store')
       .expect('content-type', 'text/css;charset=utf-8');
+  });
+});
+
+describe('ALL /render', () => {
+  it(`The 'content-type' in header should be 'text/html;charset=utf-8'.`, async () => {
+    await request
+      .post('/render')
+      .expect('content-type', 'text/html;charset=utf-8');
   });
 });

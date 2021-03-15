@@ -1,11 +1,19 @@
 const path = require('path');
+const consolidate = require('consolidate');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const pureHttp = require('..');
 const router = require('./router');
 
+const viewsPath = path.resolve(process.cwd(), 'tests/views');
+
 const app = pureHttp({
   cache: pureHttp.Cache({ maxAge: 60000 }),
+  views: {
+    dir: viewsPath,
+    ext: 'html',
+    engine: consolidate.swig,
+  },
 });
 
 app.use([
@@ -24,7 +32,7 @@ app.post('/', (req, res) => {
 
 app.use('/', router);
 
-app.all('/status', (req, res) => res.status(200).json({ success: true }));
+app.all('/status', (req, res) => res.json({ success: true }, 302));
 
 app.get('/set-cookie', (req, res) => {
   res.cookie('foo', 'bar');
@@ -47,6 +55,16 @@ app.all('/send-file', (req, res) => {
   const filePath = path.resolve(process.cwd(), 'tests/index.css');
 
   res.sendFile(filePath, { headers: { 'Cache-Control': 'no-store' } });
+});
+
+app.get('/jsonp', (req, res) => {
+  res.jsonp({
+    message: 'Hello World!',
+  });
+});
+
+app.all('/render', (req, res) => {
+  res.render('index', { data: 'Hello World!' });
 });
 
 module.exports = app;
