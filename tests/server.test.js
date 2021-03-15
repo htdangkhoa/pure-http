@@ -1,7 +1,7 @@
 const supertest = require('supertest');
+const cookie = require('cookie');
 
 const app = require('./server');
-const { parse: parseCookie } = require('../lib/cookie');
 
 const request = supertest(app);
 
@@ -74,10 +74,10 @@ describe('GET /set-cookie', () => {
 
     const cookies = res.headers['set-cookie'];
 
-    const cookie1 = parseCookie(cookies[0]);
+    const cookie1 = cookie.parse(cookies[0]);
     expect(cookie1.foo).toBe('bar');
 
-    const cookie2 = parseCookie(cookies[1]);
+    const cookie2 = cookie.parse(cookies[1]);
     expect(cookie2.ping).toBe('pong');
 
     done();
@@ -90,10 +90,10 @@ describe('POST /clear-cookie', () => {
 
     const cookies = res.headers['set-cookie'];
 
-    const cookie1 = parseCookie(cookies[0]);
+    const cookie1 = cookie.parse(cookies[0]);
     expect(cookie1.foo).toBe('');
 
-    const cookie2 = parseCookie(cookies[1]);
+    const cookie2 = cookie.parse(cookies[1]);
     expect(cookie2.ping).toBe('');
 
     done();
@@ -114,6 +114,6 @@ describe('ALL /send-file', () => {
     await request
       .post('/send-file')
       .expect('cache-control', 'no-store')
-      .expect('content-type', 'text/css');
+      .expect('content-type', 'text/css;charset=utf-8');
   });
 });
