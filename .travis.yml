@@ -4,6 +4,10 @@ node_js:
   - 10
   - 12
   - 14
+  - 15
+
+install:
+  - yarn install --ignore-engines
 
 notifications:
   email:
