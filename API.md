@@ -56,6 +56,10 @@
 
 > Routes HTTP TRACE requests to the specified path with the specified handler functions.
 
+#### connect(route, handler [, handler...])
+
+> Routes HTTP CONNECT requests to the specified path with the specified handler functions.
+
 #### all(route, handler [, handler...])
 
 > This method accepts all of HTTP method of the request, such as GET, PUT, POST.
@@ -71,10 +75,6 @@ The req object is an enhanced version of Node’s own request object and support
 #### req.body
 
 > Contains key-value pairs of data submitted in the request body. By default, it is `undefined`, and is populated when you use body-parsing middleware.
-
-#### req.hash
-
-> The hash property of the [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL) interface is a [USVString](https://developer.mozilla.org/en-US/docs/Web/API/USVString) containing a '#' followed by the fragment identifier of the URL.
 
 #### req.host
 
