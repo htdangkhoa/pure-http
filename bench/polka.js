@@ -1,15 +1,16 @@
 /* eslint-disable */
-const express = require('polka');
+const polka = require('polka');
+const send = require('@polka/send-type');
 const { one, two } = require('./middlewares');
 
-const app = express();
+const app = polka();
 
 app.use(one, two);
 
-app.get('/', (req, res) => res.end('Hello'));
+app.get('/', (req, res) => send(res, 200, 'Hello'));
 
 app.get('/user/:id', (req, res) => {
-  res.end(`User: ${req.params.id}`);
+  send(res, 200, `User: ${req.params.id}`);
 });
 
 module.exports = () => app;
