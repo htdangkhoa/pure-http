@@ -1,3 +1,4 @@
+const http = require('http');
 const path = require('path');
 const consolidate = require('consolidate');
 const timeout = require('connect-timeout');
@@ -15,6 +16,7 @@ const app = pureHttp({
     ext: 'html',
     engine: consolidate.swig,
   },
+  server: http.createServer(),
 });
 
 app.use([
@@ -36,17 +38,25 @@ app.use('/', router);
 
 app.all('/status', (req, res) => res.json({ success: true }, 302));
 
+app.all('/get-header', (req, res) => {
+  const host = req.header('host');
+
+  res.send(host);
+});
+
+// eslint-disable-next-line no-unused-vars
 app.all('/timeout', async (req, res) => {
   const sleep = (wait) => new Promise((resolve) => setTimeout(resolve, wait));
 
   await sleep(5000);
-
-  res.render('Ok.');
 });
 
 app.get('/set-cookie', (req, res) => {
   res.cookie('foo', 'bar');
-  res.cookie('ping', 'pong');
+  res.cookie('ping', 'pong', { sameSite: true });
+  res.cookie('lax', 'lax', { sameSite: 'lax' });
+  res.cookie('strict', 'strict', { sameSite: 'strict' });
+  res.cookie('none', 'none', { sameSite: 'none' });
 
   res.send('Ok');
 });
@@ -75,6 +85,19 @@ app.get('/jsonp', (req, res) => {
 
 app.all('/render', (req, res) => {
   res.render('index', { data: 'Hello World!' });
+});
+
+// eslint-disable-next-line no-unused-vars
+app.all('/error', (req, res) => {
+  res.cookie('test', 'test', {
+    sameSite: 1,
+    maxAge: 60000,
+    httpOnly: true,
+    secure: true,
+    domain: req.host,
+  });
+
+  throw new Error('Internal server error.');
 });
 
 module.exports = app;

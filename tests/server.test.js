@@ -29,6 +29,16 @@ describe('ALL /status', () => {
   });
 });
 
+describe('ALL /get-header', () => {
+  it('The status should be 503.', async (done) => {
+    const res = await request.get('/get-header');
+
+    expect(typeof res.text).toBe('string');
+
+    done();
+  });
+});
+
 describe('ALL /timeout', () => {
   it('The status should be 503.', async () => {
     await request.post('/timeout').expect(503);
@@ -145,5 +155,11 @@ describe('ALL /render', () => {
     await request
       .post('/render')
       .expect('content-type', 'text/html;charset=utf-8');
+  });
+});
+
+describe('ALL /error', () => {
+  it(`The status should be 500.`, async () => {
+    await request.post('/error').expect(500);
   });
 });
