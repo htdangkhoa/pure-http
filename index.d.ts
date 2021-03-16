@@ -22,10 +22,6 @@ declare module 'pure-http' {
     sameSite?: true | false | 'lax' | 'strict' | 'none';
   }
 
-  export interface ICookieParseOptions {
-    decode?(value: string): string;
-  }
-
   export interface ISendFileOptions {
     headers?: IHeader;
   }
@@ -49,13 +45,7 @@ declare module 'pure-http' {
 
     query?: Record<string, string>;
 
-    hash?: string;
-
     header(name: string): undefined | string | string[];
-
-    cookies: Record<string, string>;
-
-    cookie(name: string, options?: ICookieParseOptions): Record<string, string>;
   }
 
   export interface IRequestHttp extends http.IncomingMessage, IRequest {}
@@ -197,6 +187,7 @@ declare module 'pure-http' {
       callback?: (error: unknown, html: string) => void,
     ): void;
 
+    /* cookie */
     cookie(name, value, options?: ICookieSerializeOptions): this;
 
     clearCookie(name, options?: ICookieSerializeOptions): this;
@@ -239,6 +230,8 @@ declare module 'pure-http' {
     options(path: string, ...handler: Array<Handler>): this;
 
     trace(path: string, ...handler: Array<Handler>): this;
+
+    connect(path: string, ...handler: Array<Handler>): this;
 
     all(path: string, ...handler: Array<Handler>): this;
 
