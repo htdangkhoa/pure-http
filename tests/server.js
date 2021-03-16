@@ -1,5 +1,6 @@
 const path = require('path');
 const consolidate = require('consolidate');
+const timeout = require('connect-timeout');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const pureHttp = require('..');
@@ -20,6 +21,7 @@ app.use([
   bodyParser.json(),
   bodyParser.urlencoded({ extended: true }),
   cookieParser(),
+  timeout('3s'),
 ]);
 
 app.get('/', (req, res) => {
@@ -33,6 +35,14 @@ app.post('/', (req, res) => {
 app.use('/', router);
 
 app.all('/status', (req, res) => res.json({ success: true }, 302));
+
+app.all('/timeout', async (req, res) => {
+  const sleep = (wait) => new Promise((resolve) => setTimeout(resolve, wait));
+
+  await sleep(5000);
+
+  res.render('Ok.');
+});
 
 app.get('/set-cookie', (req, res) => {
   res.cookie('foo', 'bar');

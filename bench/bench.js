@@ -3,9 +3,9 @@ const wrk = require('wrk');
 
 const express = require('./express');
 const fastify = require('./fastify');
-const polka = require('./polka');
 const pureHttp = require('./pure-http');
 const pureHttpWithCache = require('./pure-http-with-cache');
+const tinyhttp = require('./tinyhttp');
 
 const frameworks = [
   {
@@ -17,16 +17,16 @@ const frameworks = [
     fn: fastify,
   },
   {
-    name: 'polka',
-    fn: polka,
-  },
-  {
     name: 'pure-http',
     fn: pureHttp,
   },
   {
     name: 'pure-http (with cache)',
     fn: pureHttpWithCache,
+  },
+  {
+    name: 'tinyhttp',
+    fn: tinyhttp,
   },
 ];
 

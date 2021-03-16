@@ -29,6 +29,12 @@ describe('ALL /status', () => {
   });
 });
 
+describe('ALL /timeout', () => {
+  it('The status should be 503.', async () => {
+    await request.post('/timeout').expect(503);
+  });
+});
+
 describe('GET /api/hello/{name}', () => {
   it('A string should be returned.', async () => {
     const name = 'Khoa';
