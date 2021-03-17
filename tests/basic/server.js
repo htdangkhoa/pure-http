@@ -1,5 +1,6 @@
 const http = require('http');
 const path = require('path');
+const fs = require('fs');
 const timeout = require('connect-timeout');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -43,7 +44,7 @@ app.all('/timeout', async (req, res) => {
 });
 
 app.all('/send-file', (req, res) => {
-  const filePath = path.resolve(process.cwd(), 'tests/index.css');
+  const filePath = path.resolve(process.cwd(), 'tests/public/index.css');
 
   res.sendFile(filePath, { headers: { 'Cache-Control': 'no-store' } });
 });
@@ -70,6 +71,29 @@ app.all('/redirect-with-status', (req, res) => {
   }
 
   return res.redirect('/', 200);
+});
+
+app.all('/stream-image', (req, res) => {
+  const imgPath = path.resolve(process.cwd(), 'tests/public/image.png');
+
+  const readableStream = fs.createReadStream(imgPath);
+
+  return res.send(readableStream);
+});
+
+app.all('/download-image', (req, res) => {
+  const imgPath = path.resolve(process.cwd(), 'tests/public/image.png');
+
+  const readableStream = fs.createReadStream(imgPath);
+
+  const chunks = [];
+
+  readableStream.on('data', (chunk) => chunks.push(chunk));
+  readableStream.on('end', () => {
+    const buffer = Buffer.concat(chunks);
+
+    return res.send(buffer);
+  });
 });
 
 module.exports = app;

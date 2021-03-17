@@ -5,19 +5,19 @@ const app = require('./server');
 const request = supertest(app);
 
 describe('GET /get-cache', () => {
-  it('should respond with jsonp', async () => {
+  it('The status should be 200.', async () => {
     await request.get('/get-cache').expect(200);
   });
 });
 
 describe('POST /set-cache', () => {
-  it('should respond with jsonp', async () => {
+  it('The status should be 200.', async () => {
     await request.post('/set-cache').expect(200);
   });
 });
 
 describe('GET /jsonp-with-escape', () => {
-  it('should respond with jsonp', async () => {
+  it('The status should be 200.', async () => {
     await request
       .get('/jsonp-with-escape')
       .query({ callback: 'foo' })

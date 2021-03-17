@@ -134,3 +134,40 @@ describe('ALL /redirect-with-status', () => {
       .expect(200);
   });
 });
+
+describe('ALL /stream-image', () => {
+  it(`The response should be a Buffer.`, async (done) => {
+    request
+      .get('/stream-image')
+      .buffer()
+      .parse((res, cb) => {
+        res.setEncoding('binary');
+        res.data = '';
+        res.on('data', function (chunk) {
+          res.data += chunk;
+        });
+        res.on('end', function () {
+          cb(null, Buffer.from(res.data, 'binary'));
+        });
+      })
+      .end((error, res) => {
+        if (error) return done(error);
+
+        expect(Buffer.isBuffer(res.body)).toBe(true);
+
+        return done();
+      });
+  });
+});
+
+describe('ALL /download-image', () => {
+  it(`The response should be a Buffer.`, async (done) => {
+    request.get('/download-image').end((error, res) => {
+      if (error) return done(error);
+
+      expect(Buffer.isBuffer(res.body)).toBe(true);
+
+      return done();
+    });
+  });
+});
