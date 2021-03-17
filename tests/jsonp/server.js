@@ -1,13 +1,9 @@
-const http = require('http');
 const timeout = require('connect-timeout');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const pureHttp = require('../..');
 
-const app = pureHttp({
-  cache: pureHttp.Cache({ maxAge: 60000 }),
-  server: http.createServer(),
-});
+const app = pureHttp();
 
 app.use([
   bodyParser.json(),

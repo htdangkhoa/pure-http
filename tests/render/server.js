@@ -1,4 +1,3 @@
-const http = require('http');
 const path = require('path');
 const consolidate = require('consolidate');
 const timeout = require('connect-timeout');
@@ -15,7 +14,6 @@ module.exports = function (options) {
       ext: 'html',
       engine: consolidate.swig,
     },
-    server: http.createServer(),
   };
 
   const app = pureHttp(options || defaultOptions);
