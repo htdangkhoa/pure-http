@@ -69,15 +69,7 @@ describe('ALL /render-ejs-error', () => {
 
 describe('ALL /render', () => {
   it(`The 'content-type' in header should be 'text/html;charset=utf-8'.`, async () => {
-    const request = supertest(
-      app({
-        views: {
-          dir: viewsPath,
-          ext: 'html',
-          engine: consolidate.swig,
-        },
-      }),
-    );
+    const request = supertest(app());
 
     await request
       .post('/render')
@@ -87,15 +79,7 @@ describe('ALL /render', () => {
 
 describe('ALL /render-with-options', () => {
   it(`The 'content-type' in header should be 'text/html;charset=utf-8'.`, async () => {
-    const request = supertest(
-      app({
-        views: {
-          dir: viewsPath,
-          ext: 'html',
-          engine: consolidate.swig,
-        },
-      }),
-    );
+    const request = supertest(app());
 
     await request
       .post('/render-with-options')
