@@ -89,16 +89,6 @@ describe('GET /not-found', () => {
   });
 });
 
-describe('GET /jsonp', () => {
-  it('should respond with jsonp', async () => {
-    await request
-      .get('/jsonp')
-      .query({ callback: 'foo' })
-      .expect('content-type', 'text/javascript;charset=utf-8')
-      .expect(200, /foo\(\{"message":"Hello World!"\}\);/);
-  });
-});
-
 describe('ALL /send-file', () => {
   it(`The 'content-type' in header should be 'text/css;charset=utf-8'.`, async () => {
     await request

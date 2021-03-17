@@ -7,7 +7,6 @@ const pureHttp = require('../..');
 const router = require('./router');
 
 const app = pureHttp({
-  cache: pureHttp.Cache({ maxAge: 60000 }),
   server: http.createServer(),
 });
 
