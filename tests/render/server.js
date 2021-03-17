@@ -31,5 +31,15 @@ module.exports = function (options) {
     res.render('index', { data: 'Hello World!' });
   });
 
+  app.all('/render-ejs-error', (req, res) => {
+    res.render('ejs', { data: 'Hello World!' });
+  });
+
+  app.all('/render-with-options', (req, res) => {
+    res.render('index', (error, html) => {
+      return res.send(html, { 'content-type': 'text/html;charset=utf-8' });
+    });
+  });
+
   return app;
 };
