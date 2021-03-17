@@ -1,4 +1,4 @@
-const { Router } = require('..');
+const { Router } = require('../..');
 const SubRouter = require('./sub-router');
 
 const router = Router('/api');

@@ -1,21 +1,13 @@
 const http = require('http');
 const path = require('path');
-const consolidate = require('consolidate');
 const timeout = require('connect-timeout');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const pureHttp = require('..');
+const pureHttp = require('../..');
 const router = require('./router');
-
-const viewsPath = path.resolve(process.cwd(), 'tests/views');
 
 const app = pureHttp({
   cache: pureHttp.Cache({ maxAge: 60000 }),
-  views: {
-    dir: viewsPath,
-    ext: 'html',
-    engine: consolidate.swig,
-  },
   server: http.createServer(),
 });
 
@@ -51,26 +43,6 @@ app.all('/timeout', async (req, res) => {
   await sleep(5000);
 });
 
-app.get('/set-cookie', (req, res) => {
-  res.cookie('foo', 'bar');
-  res.cookie('ping', 'pong', { sameSite: true });
-  res.cookie('lax', 'lax', { sameSite: 'lax' });
-  res.cookie('strict', 'strict', { sameSite: 'strict' });
-  res.cookie('none', 'none', { sameSite: 'none' });
-
-  res.send('Ok');
-});
-
-app.post('/clear-cookie', (req, res) => {
-  res.clearCookie('foo').clearCookie('ping');
-
-  res.send('Ok');
-});
-
-app.post('/set-cookie', (req, res) => {
-  res.send(req.cookies);
-});
-
 app.all('/send-file', (req, res) => {
   const filePath = path.resolve(process.cwd(), 'tests/index.css');
 
@@ -83,21 +55,28 @@ app.get('/jsonp', (req, res) => {
   });
 });
 
-app.all('/render', (req, res) => {
-  res.render('index', { data: 'Hello World!' });
+app.all('/set-header', (req, res) => {
+  res.header('X-Test', 'Hello World!');
+
+  res.send(200);
 });
 
-// eslint-disable-next-line no-unused-vars
-app.all('/error', (req, res) => {
-  res.cookie('test', 'test', {
-    sameSite: 1,
-    maxAge: 60000,
-    httpOnly: true,
-    secure: true,
-    domain: req.host,
-  });
+app.all('/set-status', (req, res) => {
+  res.status(400);
 
-  throw new Error('Internal server error.');
+  res.send('Bad request.');
+});
+
+app.all('/redirect', (req, res) => {
+  res.redirect('/');
+});
+
+app.all('/redirect-with-status', (req, res) => {
+  if (req.query.numberFist) {
+    return res.redirect(200, '/');
+  }
+
+  return res.redirect('/', 200);
 });
 
 module.exports = app;

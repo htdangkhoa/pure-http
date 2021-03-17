@@ -1,5 +1,4 @@
 const supertest = require('supertest');
-const cookie = require('cookie');
 
 const app = require('./server');
 
@@ -90,47 +89,6 @@ describe('GET /not-found', () => {
   });
 });
 
-describe('GET /set-cookie', () => {
-  it(`The 'foo' should be equal 'bar' and the 'ping' should be equal 'pong'.`, async (done) => {
-    const res = await request.get('/set-cookie');
-
-    const cookies = res.headers['set-cookie'];
-
-    const cookie1 = cookie.parse(cookies[0]);
-    expect(cookie1.foo).toBe('bar');
-
-    const cookie2 = cookie.parse(cookies[1]);
-    expect(cookie2.ping).toBe('pong');
-
-    done();
-  });
-});
-
-describe('POST /clear-cookie', () => {
-  it(`The 'foo' should be empty and the 'ping' should be empty.`, async (done) => {
-    const res = await request.post('/clear-cookie');
-
-    const cookies = res.headers['set-cookie'];
-
-    const cookie1 = cookie.parse(cookies[0]);
-    expect(cookie1.foo).toBe('');
-
-    const cookie2 = cookie.parse(cookies[1]);
-    expect(cookie2.ping).toBe('');
-
-    done();
-  });
-});
-
-describe('POST /set-cookie', () => {
-  it(`The cookie must be set in request.`, async () => {
-    await request
-      .post('/set-cookie')
-      .set('Cookie', ['foo=bar', 'ping=pong'])
-      .expect({ foo: 'bar', ping: 'pong' });
-  });
-});
-
 describe('GET /jsonp', () => {
   it('should respond with jsonp', async () => {
     await request
@@ -150,16 +108,39 @@ describe('ALL /send-file', () => {
   });
 });
 
-describe('ALL /render', () => {
-  it(`The 'content-type' in header should be 'text/html;charset=utf-8'.`, async () => {
-    await request
-      .post('/render')
-      .expect('content-type', 'text/html;charset=utf-8');
+describe('ALL /set-header', () => {
+  it(`The 'X-Test' header should be 'Hello World!'.`, async () => {
+    await request.post('/set-header').expect('X-Test', 'Hello World!');
   });
 });
 
-describe('ALL /error', () => {
-  it(`The status should be 500.`, async () => {
-    await request.post('/error').expect(500);
+describe('ALL /set-status', () => {
+  it(`The status should be 400.`, async () => {
+    await request.post('/set-status').expect(400);
+  });
+});
+
+describe('ALL /redirect', () => {
+  it(`The location should be /.`, async () => {
+    await request.post('/redirect').expect('location', '/').expect(302);
+  });
+});
+
+describe('ALL /redirect-with-status', () => {
+  it(`The location should be / and the status should be 200.`, async () => {
+    await request
+      .get('/redirect-with-status')
+      .expect('location', '/')
+      .expect(200);
+  });
+});
+
+describe('ALL /redirect-with-status', () => {
+  it(`The location should be / and the status should be 200.`, async () => {
+    await request
+      .get('/redirect-with-status')
+      .query('numberFist', true)
+      .expect('location', '/')
+      .expect(200);
   });
 });
