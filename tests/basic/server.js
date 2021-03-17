@@ -48,12 +48,6 @@ app.all('/send-file', (req, res) => {
   res.sendFile(filePath, { headers: { 'Cache-Control': 'no-store' } });
 });
 
-app.get('/jsonp', (req, res) => {
-  res.jsonp({
-    message: 'Hello World!',
-  });
-});
-
 app.all('/set-header', (req, res) => {
   res.header('X-Test', 'Hello World!');
 
