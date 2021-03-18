@@ -35,7 +35,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage --no-cache"
   },
   "jest": {
     "collectCoverage": true,
