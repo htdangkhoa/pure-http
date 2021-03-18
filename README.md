@@ -19,8 +19,8 @@
     <img src="https://www.codefactor.io/repository/github/htdangkhoa/pure-http/badge" alt="codefactor" />
   </a>
 
-  <a href='https://travis-ci.org/github/htdangkhoa/pure-http'>
-    <img src='https://travis-ci.com/htdangkhoa/pure-http.svg?branch=master' alt='build' />
+  <a href='https://github.com/htdangkhoa/pure-http/actions/workflows/build.yml'>
+    <img src='https://github.com/htdangkhoa/pure-http/actions/workflows/build.yml/badge.svg' alt='build' />
   </a>
 
   <a href='https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base'>
