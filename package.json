@@ -36,7 +36,7 @@
   ],
   "scripts": {
     "test": "jest --coverage --no-cache",
-    "posttest": "cat coverage/lcov.info | coveralls"
+    "posttest": "cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
     "collectCoverage": true,
