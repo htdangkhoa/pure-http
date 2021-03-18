@@ -23,6 +23,10 @@
     <img src='https://github.com/htdangkhoa/pure-http/actions/workflows/build.yml/badge.svg' alt='build' />
   </a>
 
+  <a href='https://coveralls.io/github/htdangkhoa/pure-http?branch=develop'>
+    <img src='https://coveralls.io/repos/github/htdangkhoa/pure-http/badge.svg?branch=develop' alt='coverage status' />
+  </a>
+
   <a href='https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base'>
     <img src='https://img.shields.io/badge/eslint-airbnb-4B32C3.svg' alt='eslint: airbnb' />
   </a>
