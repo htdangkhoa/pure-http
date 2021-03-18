@@ -96,4 +96,6 @@ app.all('/download-image', (req, res) => {
   });
 });
 
+app.all('/wild/:uid/*', (req, res) => res.send({ uid: req.params.uid }));
+
 module.exports = app;

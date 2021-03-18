@@ -171,3 +171,13 @@ describe('ALL /download-image', () => {
     });
   });
 });
+
+describe('ALL /wild/:uid/*', () => {
+  it(`The uid from response should be '1'.`, async (done) => {
+    const res = await request.get('/wild/1/*');
+
+    expect(res.body.uid).toBe('1');
+
+    done();
+  });
+});
