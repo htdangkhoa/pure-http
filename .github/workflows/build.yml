@@ -34,7 +34,7 @@ jobs:
         run: yarn install --ignore-engines
 
       - run: |
-          echo repo_token: ${{ secrets.COVERALLS_TOKEN }} > ../../.coveralls.yml
+          echo repo_token: ${{ secrets.COVERALLS_TOKEN }} > .coveralls.yml
 
       - name: Test
         run: yarn test
