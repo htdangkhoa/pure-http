@@ -35,15 +35,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "jest --coverage --no-cache",
+    "test": "jest --collectCoverage --no-cache",
     "posttest": "coveralls < coverage/lcov.info"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "coverageReporters": [
-      "json",
-      "html"
-    ]
   },
   "dependencies": {},
   "devDependencies": {
