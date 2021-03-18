@@ -36,7 +36,8 @@
   ],
   "scripts": {
     "test": "jest --coverage --no-cache",
-    "test:cov": "coveralls < coverage/lcov.info"
+    "test:cov": "jest --collectCoverage --reporters=\"default\" --no-cache",
+    "posttest:cov": "coveralls < coverage/lcov.info"
   },
   "jest": {
     "collectCoverage": true,
