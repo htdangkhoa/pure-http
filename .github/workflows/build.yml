@@ -37,7 +37,7 @@ jobs:
           echo repo_token: ${{ secrets.COVERALLS_TOKEN }} > .coveralls.yml
 
       - name: Test
-        run: yarn test:cov
+        run: yarn test
 
       - name: Coveralls
         uses: coverallsapp/github-action@v1.1.2
