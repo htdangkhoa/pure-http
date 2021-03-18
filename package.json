@@ -36,7 +36,8 @@
   ],
   "scripts": {
     "test": "jest --collectCoverage --no-cache",
-    "posttest": "coveralls < coverage/lcov.info"
+    "test:cov": "npm run test",
+    "posttest:cov": "coveralls < coverage/lcov.info"
   },
   "dependencies": {},
   "devDependencies": {
