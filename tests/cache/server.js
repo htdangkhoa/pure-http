@@ -22,7 +22,7 @@ app.use([
     res.cache.set('/get-cache', {
       raw: JSON.stringify('data'),
       method: 'GET',
-      headers: {},
+      headers: { 'X-Timezone': 'Asia/Ho_Chi_Minh' },
     });
 
     return next();
