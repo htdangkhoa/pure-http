@@ -90,11 +90,11 @@ describe('GET /not-found', () => {
 });
 
 describe('ALL /send-file', () => {
-  it(`The 'content-type' in header should be 'text/css;charset=utf-8'.`, async () => {
+  it(`The 'content-type' in header should be 'text/css; charset=utf-8'.`, async () => {
     await request
       .post('/send-file')
       .expect('cache-control', 'no-store')
-      .expect('content-type', 'text/css;charset=utf-8');
+      .expect('content-type', 'text/css; charset=utf-8');
   });
 });
 

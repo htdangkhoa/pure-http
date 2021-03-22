@@ -68,21 +68,21 @@ describe('ALL /render-ejs-error', () => {
 });
 
 describe('ALL /render', () => {
-  it(`The 'content-type' in header should be 'text/html;charset=utf-8'.`, async () => {
+  it(`The 'content-type' in header should be 'text/html; charset=utf-8'.`, async () => {
     const request = supertest(app());
 
     await request
       .post('/render')
-      .expect('content-type', 'text/html;charset=utf-8');
+      .expect('content-type', 'text/html; charset=utf-8');
   });
 });
 
 describe('ALL /render-with-options', () => {
-  it(`The 'content-type' in header should be 'text/html;charset=utf-8'.`, async () => {
+  it(`The 'content-type' in header should be 'text/html; charset=utf-8'.`, async () => {
     const request = supertest(app());
 
     await request
       .post('/render-with-options')
-      .expect('content-type', 'text/html;charset=utf-8');
+      .expect('content-type', 'text/html; charset=utf-8');
   });
 });

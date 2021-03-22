@@ -22,4 +22,19 @@ app.get('/jsonp-with-escape', (req, res) => {
   res.jsonp({ '&': '\u2028<script>\u2029' }, { escape: true });
 });
 
+app.get('/jsonp-with-replacer', (req, res) => {
+  res.jsonp(
+    { name: 'tobi', _id: 12345 },
+    {
+      replacer: (key, val) => {
+        return key[0] === '_' ? undefined : val;
+      },
+    },
+  );
+});
+
+app.get('/jsonp-with-spaces', (req, res) => {
+  res.jsonp({ name: 'tobi', age: 2 }, { spaces: 2 });
+});
+
 module.exports = app;

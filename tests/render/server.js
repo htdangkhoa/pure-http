@@ -35,7 +35,7 @@ module.exports = function (options) {
 
   app.all('/render-with-options', (req, res) => {
     res.render('index', (error, html) => {
-      return res.send(html, { 'content-type': 'text/html;charset=utf-8' });
+      return res.send(html, { 'content-type': 'text/html; charset=utf-8' });
     });
   });
 
