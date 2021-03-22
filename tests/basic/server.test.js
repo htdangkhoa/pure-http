@@ -89,15 +89,6 @@ describe('GET /not-found', () => {
   });
 });
 
-describe('ALL /send-file', () => {
-  it(`The 'content-type' in header should be 'text/css; charset=utf-8'.`, async () => {
-    await request
-      .post('/send-file')
-      .expect('cache-control', 'no-store')
-      .expect('content-type', 'text/css; charset=utf-8');
-  });
-});
-
 describe('ALL /set-header', () => {
   it(`The 'X-Test' header should be 'Hello World!'.`, async () => {
     await request.post('/set-header').expect('X-Test', 'Hello World!');
@@ -132,43 +123,6 @@ describe('ALL /redirect-with-status', () => {
       .query('numberFist', true)
       .expect('location', '/')
       .expect(200);
-  });
-});
-
-describe('ALL /stream-image', () => {
-  it(`The response should be a Buffer.`, async (done) => {
-    request
-      .get('/stream-image')
-      .buffer()
-      .parse((res, cb) => {
-        res.setEncoding('binary');
-        res.data = '';
-        res.on('data', function (chunk) {
-          res.data += chunk;
-        });
-        res.on('end', function () {
-          cb(null, Buffer.from(res.data, 'binary'));
-        });
-      })
-      .end((error, res) => {
-        if (error) return done(error);
-
-        expect(Buffer.isBuffer(res.body)).toBe(true);
-
-        return done();
-      });
-  });
-});
-
-describe('ALL /download-image', () => {
-  it(`The response should be a Buffer.`, async (done) => {
-    request.get('/download-image').end((error, res) => {
-      if (error) return done(error);
-
-      expect(Buffer.isBuffer(res.body)).toBe(true);
-
-      return done();
-    });
   });
 });
 

@@ -43,12 +43,6 @@ app.all('/timeout', async (req, res) => {
   await sleep(5000);
 });
 
-app.all('/send-file', (req, res) => {
-  const filePath = path.resolve(process.cwd(), 'tests/public/index.css');
-
-  res.sendFile(filePath, { headers: { 'Cache-Control': 'no-store' } });
-});
-
 app.all('/set-header', (req, res) => {
   res.header('X-Test', 'Hello World!');
 
@@ -71,29 +65,6 @@ app.all('/redirect-with-status', (req, res) => {
   }
 
   return res.redirect('/', 200);
-});
-
-app.all('/stream-image', (req, res) => {
-  const imgPath = path.resolve(process.cwd(), 'tests/public/image.png');
-
-  const readableStream = fs.createReadStream(imgPath);
-
-  return res.send(readableStream);
-});
-
-app.all('/download-image', (req, res) => {
-  const imgPath = path.resolve(process.cwd(), 'tests/public/image.png');
-
-  const readableStream = fs.createReadStream(imgPath);
-
-  const chunks = [];
-
-  readableStream.on('data', (chunk) => chunks.push(chunk));
-  readableStream.on('end', () => {
-    const buffer = Buffer.concat(chunks);
-
-    return res.send(buffer);
-  });
 });
 
 app.all('/wild/:uid/*', (req, res) => res.send({ uid: req.params.uid }));
