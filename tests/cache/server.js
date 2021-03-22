@@ -3,58 +3,75 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const pureHttp = require('../..');
 
-const app = pureHttp({
-  cache: pureHttp.Cache({ maxAge: 60000, max: 2 }),
-});
-
 const sleep = (fn, wait) =>
   new Promise((resolve) => setTimeout(() => resolve(fn()), wait));
 
-app.use([
-  bodyParser.json(),
-  bodyParser.urlencoded({ extended: true }),
-  cookieParser(),
-  timeout('30s'),
-  (req, res, next) => {
-    res.cache.has({});
-    res.cache.get({});
+module.exports = function (options) {
+  const opts = { maxAge: 60000, max: 2 };
+  Object.assign(opts, options);
 
-    res.cache.set('/get-cache', {
-      raw: JSON.stringify('data'),
-      method: 'GET',
-      headers: { 'X-Timezone': 'Asia/Ho_Chi_Minh' },
-    });
+  const app = pureHttp({
+    cache: pureHttp.Cache(opts),
+  });
 
-    return next();
-  },
-]);
+  app.use([
+    bodyParser.json(),
+    bodyParser.urlencoded({ extended: true }),
+    cookieParser(),
+    timeout('30s'),
+    (req, res, next) => {
+      res.cache.has({});
+      res.cache.get({});
 
-app.get('/get-cache', (req, res) => res.send('data', true));
+      res.cache.set('/get-cache', {
+        raw: JSON.stringify('data'),
+        method: 'GET',
+        headers: { 'X-Timezone': 'Asia/Ho_Chi_Minh' },
+      });
 
-app.post('/set-cache', (req, res) => res.send('data', true));
+      res.cache.set('/override-key', {
+        raw: JSON.stringify('data'),
+        method: 'POST',
+        headers: { 'X-Timezone': 'Asia/Ho_Chi_Minh' },
+      });
 
-app.delete('/delete-cache', (req, res) => {
-  const cache = pureHttp.Cache({ maxAge: 5 });
+      return next();
+    },
+  ]);
 
-  cache.set('1', req.originalUrl);
-  cache.set('2', req.originalUrl);
-  cache.delete('1');
-  cache.delete({});
+  app.get('/get-cache', (req, res) => {
+    res.send('data', true);
+  });
 
-  sleep(() => {
-    cache.get('2');
-    cache.delete('2');
+  app.post('/override-key', (req, res) => {
+    res.send('test', true);
+  });
 
-    res.send('Ok');
-  }, 3000);
-});
+  app.post('/set-cache', (req, res) => res.send('data', true));
 
-app.get('/jsonp-with-escape', (req, res) => {
-  res.jsonp({ '&': '\u2028<script>\u2029' }, true, { escape: true });
-});
+  app.delete('/delete-cache', (req, res) => {
+    const cache = pureHttp.Cache({ maxAge: 5 });
 
-app.all('/error', (req, res) => {
-  res.cache.set({}, 'error');
-});
+    cache.set('1', req.originalUrl);
+    cache.set('2', req.originalUrl);
+    cache.delete('1');
+    cache.delete({});
 
-module.exports = app;
+    sleep(() => {
+      cache.get('2');
+      cache.delete('2');
+
+      res.send('Ok');
+    }, 3000);
+  });
+
+  app.get('/jsonp-with-escape', (req, res) => {
+    res.jsonp({ '&': '\u2028<script>\u2029' }, true, { escape: true });
+  });
+
+  app.all('/error', (req, res) => {
+    res.cache.set({}, 'error');
+  });
+
+  return app;
+};

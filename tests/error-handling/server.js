@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const pureHttp = require('../..');
 
 module.exports = function () {
-  const app = pureHttp();
+  const app = pureHttp({ cache: pureHttp.Cache() });
 
   app.use([
     bodyParser.json(),

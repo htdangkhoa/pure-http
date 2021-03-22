@@ -128,7 +128,22 @@ describe('send', () => {
     });
   });
 
-  it(`The 'content-type' in header should be 'text/css; charset=utf-8'.`, async () => {
+  it(`The 'content-type' in header should be 'text/css; charset=utf-8' without options.`, async () => {
+    const app = pureHttp();
+    app.use((req, res) => {
+      const filePath = path.resolve(process.cwd(), 'tests/public/index.css');
+
+      res.sendFile(filePath);
+    });
+
+    const request = supertest(app);
+
+    await request
+      .post('/send-file')
+      .expect('content-type', 'text/css; charset=utf-8');
+  });
+
+  it(`The 'content-type' in header should be 'text/css; charset=utf-8' with options.`, async () => {
     const app = pureHttp();
     app.use((req, res) => {
       const filePath = path.resolve(process.cwd(), 'tests/public/index.css');
