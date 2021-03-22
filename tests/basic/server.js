@@ -1,6 +1,4 @@
 const http = require('http');
-const path = require('path');
-const fs = require('fs');
 const timeout = require('connect-timeout');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -66,7 +64,5 @@ app.all('/redirect-with-status', (req, res) => {
 
   return res.redirect('/', 200);
 });
-
-app.all('/wild/:uid/*', (req, res) => res.send({ uid: req.params.uid }));
 
 module.exports = app;
