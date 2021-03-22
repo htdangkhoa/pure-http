@@ -43,7 +43,7 @@
   "devDependencies": {
     "@tinyhttp/app": "^1.2.17",
     "body-parser": "^1.19.0",
-    "commander": "^7.1.0",
+    "commander": "^7.2.0",
     "connect-timeout": "^1.9.0",
     "consolidate": "^0.16.0",
     "cookie": "^0.4.1",
