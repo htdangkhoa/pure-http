@@ -213,29 +213,29 @@ declare module 'pure-http' {
   ) => void | Promise<unknown>;
 
   export interface IRouter {
-    get(path: string, ...handler: Array<Handler>): this;
+    get(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    post(path: string, ...handler: Array<Handler>): this;
+    post(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    put(path: string, ...handler: Array<Handler>): this;
+    put(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    patch(path: string, ...handler: Array<Handler>): this;
+    patch(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    delete(path: string, ...handler: Array<Handler>): this;
+    delete(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    head(path: string, ...handler: Array<Handler>): this;
+    head(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    options(path: string, ...handler: Array<Handler>): this;
+    options(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    trace(path: string, ...handler: Array<Handler>): this;
+    trace(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    connect(path: string, ...handler: Array<Handler>): this;
+    connect(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    all(path: string, ...handler: Array<Handler>): this;
+    all(path: string | RegExp, ...handler: Array<Handler>): this;
 
     use(...middlewares: Array<Handler>): this;
 
-    use(path?: string, ...middlewares: Array<Handler>): this;
+    use(path?: string | RegExp, ...middlewares: Array<Handler>): this;
 
     use(errorHandler: ErrorHandler): this;
   }
@@ -284,7 +284,7 @@ declare module 'pure-http' {
 
   export default pureHttp;
 
-  export function Router(prefix?: string): IRouter;
+  export function Router(prefix?: string | RegExp): IRouter;
 
   export function Cache(options?: ICacheOptions): ICache;
 }
