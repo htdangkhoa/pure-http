@@ -24,11 +24,13 @@ commander
   )
   .parse(process.argv);
 
+const options = commander.opts();
+
 bench({
-  port: commander.port || 3000,
-  connections: commander.connections || 100,
-  duration: commander.duration || '30s',
-  threads: commander.threads || 8,
+  port: options.port || 3000,
+  connections: options.connections || 100,
+  duration: options.duration || '30s',
+  threads: options.threads || 8,
 }).then((results) => {
   const r = results
     .sort(({ latencyAvg: a }, { latencyAvg: b }) => {
