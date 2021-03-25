@@ -134,7 +134,9 @@ router.get('/', (req, res) => {
 
 /* ... */
 
-const app = require('pure-http');
+const pureHttp = require('pure-http');
+
+const app = pureHttp();
 
 app.use('/api', router);
 
