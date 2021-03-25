@@ -29,9 +29,9 @@ declare module 'pure-http' {
   export interface IRequest {
     originalUrl: string;
 
-    location?: string;
-
     protocol?: string;
+
+    secure: boolean;
 
     host?: string;
 
@@ -40,8 +40,6 @@ declare module 'pure-http' {
     port?: number;
 
     path?: string;
-
-    search?: string;
 
     query?: Record<string, string>;
 
