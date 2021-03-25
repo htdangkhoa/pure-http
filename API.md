@@ -84,10 +84,6 @@ The req object is an enhanced version of Node’s own request object and support
 
 > Contains the hostname derived from the Host HTTP header.
 
-#### req.location
-
-> The current url (included connection port).
-
 #### req.originalUrl
 
 > This property is much like req.url; however, it retains the original request URL, allowing you to rewrite req.url freely for internal routing purposes.
@@ -107,6 +103,10 @@ The req object is an enhanced version of Node’s own request object and support
 #### req.protocol
 
 > Contains the request protocol string: either http or (for TLS requests) https.
+
+#### req.secure
+
+> A Boolean property that is true if a TLS connection is established.
 
 #### req.query
 

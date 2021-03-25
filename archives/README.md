@@ -1,2 +1,0 @@
-- [latest](../API.md)
-- [2.x.x](./2.x.x/API.md)
