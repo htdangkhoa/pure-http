@@ -20,6 +20,8 @@ declare module 'pure-http' {
     secure?: boolean;
 
     sameSite?: true | false | 'lax' | 'strict' | 'none';
+
+    signed?: boolean;
   }
 
   export interface ISendFileOptions {
@@ -186,9 +188,9 @@ declare module 'pure-http' {
     ): void;
 
     /* cookie */
-    cookie(name, value, options?: ICookieSerializeOptions): this;
+    cookie(name: string, value: any, options?: ICookieSerializeOptions): this;
 
-    clearCookie(name, options?: ICookieSerializeOptions): this;
+    clearCookie(name: string, options?: ICookieSerializeOptions): this;
 
     sendFile(filePath: string, options?: ISendFileOptions): void;
   }

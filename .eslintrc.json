@@ -25,6 +25,7 @@
     "no-return-await": "off",
     "prefer-destructuring": ["error", { "object": false, "array": false }],
     "prefer-rest-params": "off",
-    "prefer-spread": "off"
+    "prefer-spread": "off",
+    "func-names": "off"
   }
 }
