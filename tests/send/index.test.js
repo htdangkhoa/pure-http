@@ -14,7 +14,7 @@ describe('send', () => {
     await request.head('/').expect(200);
   });
 
-  it(`The response text should be 'OK'.`, async (done) => {
+  it(`The response text should be 'OK'.`, async () => {
     const app = pureHttp();
     app.use((req, res) => res.send(200));
 
@@ -23,11 +23,9 @@ describe('send', () => {
     const res = await request.get('/');
 
     expect(res.text).toBe(STATUS_CODES[200]);
-
-    done();
   });
 
-  it(`The response text should be '999'.`, async (done) => {
+  it(`The response text should be '999'.`, async () => {
     const app = pureHttp();
     app.use((req, res) => res.send(999));
 
@@ -36,11 +34,9 @@ describe('send', () => {
     const res = await request.get('/');
 
     expect(res.text).toBe('999');
-
-    done();
   });
 
-  it(`The response text should be empty when data is 'null'.`, async (done) => {
+  it(`The response text should be empty when data is 'null'.`, async () => {
     const app = pureHttp();
     app.use((req, res) => res.send(null));
 
@@ -49,11 +45,9 @@ describe('send', () => {
     const res = await request.get('/');
 
     expect(res.text).toBe('');
-
-    done();
   });
 
-  it(`The response text should be empty when data is 'undefined'.`, async (done) => {
+  it(`The response text should be empty when data is 'undefined'.`, async () => {
     const app = pureHttp();
     app.use((req, res) => res.send(undefined));
 
@@ -62,11 +56,9 @@ describe('send', () => {
     const res = await request.get('/');
 
     expect(res.text).toBe('');
-
-    done();
   });
 
-  it(`The response should be a Buffer.`, async (done) => {
+  it(`The response should be a Buffer.`, async () => {
     const app = pureHttp();
     app.use((req, res) => {
       const imgPath = path.resolve(process.cwd(), 'tests/public/image.png');
@@ -92,15 +84,11 @@ describe('send', () => {
         });
       })
       .end((error, res) => {
-        if (error) return done(error);
-
         expect(Buffer.isBuffer(res.body)).toBe(true);
-
-        return done();
       });
   });
 
-  it(`The response should be a Buffer.`, async (done) => {
+  it(`The response should be a Buffer.`, async () => {
     const app = pureHttp();
     app.use((req, res) => {
       const imgPath = path.resolve(process.cwd(), 'tests/public/image.png');
@@ -120,11 +108,7 @@ describe('send', () => {
     const request = supertest(app);
 
     request.get('/').end((error, res) => {
-      if (error) return done(error);
-
       expect(Buffer.isBuffer(res.body)).toBe(true);
-
-      return done();
     });
   });
 

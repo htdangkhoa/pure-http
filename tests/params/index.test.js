@@ -2,7 +2,7 @@ const supertest = require('supertest');
 const pureHttp = require('../..');
 
 describe('params', () => {
-  it(`The uid from response should be '1'.`, async (done) => {
+  it(`The uid from response should be '1'.`, async () => {
     const app = pureHttp();
     app.use('/wild/:uid/*', (req, res) => res.send({ uid: req.params.uid }));
 
@@ -10,11 +10,9 @@ describe('params', () => {
     const res = await request.get('/wild/1/*');
 
     expect(res.body.uid).toBe('1');
-
-    done();
   });
 
-  it(`The uid from response should be '1'.`, async (done) => {
+  it(`The uid from response should be '1'.`, async () => {
     const app = pureHttp();
     app.use('/movies/:name?/:year?', (req, res) => res.send(req.params));
 
@@ -22,8 +20,6 @@ describe('params', () => {
     const res = await request.get('/movies/star-wars');
 
     expect(res.body.name).toBe('star-wars');
-
-    done();
   });
 
   it(`The status should be 200.`, async () => {

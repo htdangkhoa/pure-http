@@ -17,24 +17,20 @@ describe('POST /', () => {
 });
 
 describe('ALL /status', () => {
-  it('An object should be returned.', async (done) => {
+  it('An object should be returned.', async () => {
     const res = await request.post('/status');
 
     expect(res.body).toMatchObject({ success: true });
 
     expect(res.status).toBe(302);
-
-    done();
   });
 });
 
 describe('ALL /get-header', () => {
-  it('The status should be 503.', async (done) => {
+  it('The status should be 503.', async () => {
     const res = await request.get('/get-header');
 
     expect(typeof res.text).toBe('string');
-
-    done();
   });
 });
 

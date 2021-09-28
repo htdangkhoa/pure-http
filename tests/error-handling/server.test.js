@@ -40,7 +40,7 @@ describe('ALL /error', () => {
 });
 
 describe('ALL /not-found', () => {
-  it(`The status should be 404 and the response text should be 'Not found.'.`, async (done) => {
+  it(`The status should be 404 and the response text should be 'Not found.'.`, async () => {
     const app = require('./server')();
     app.use(notFoundMiddleware());
 
@@ -51,14 +51,12 @@ describe('ALL /not-found', () => {
     expect(res.statusCode).toBe(404);
 
     expect(res.text).toBe('Not found.');
-
-    done();
   });
 });
 
 // Only error middleware
 describe('ALL /error', () => {
-  it(`The status should be 500 and the response text should be 'Error.'.`, async (done) => {
+  it(`The status should be 500 and the response text should be 'Error.'.`, async () => {
     const app = require('./server')();
     app.use(errorMiddleware());
 
@@ -69,8 +67,6 @@ describe('ALL /error', () => {
     expect(res.statusCode).toBe(500);
 
     expect(res.text).toBe('Error.');
-
-    done();
   });
 });
 

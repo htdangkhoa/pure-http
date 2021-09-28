@@ -43,7 +43,12 @@ declare module 'pure-http' {
 
     path?: string;
 
-    query?: Record<string, string>;
+    query?: Record<string, any>;
+
+    params?: {
+      [key: string]: any,
+      wild?: string
+    };
 
     header(name: string): undefined | string | string[];
   }
