@@ -3,7 +3,7 @@ const pureHttp = require('../..');
 
 describe('request', () => {
   describe('.secure', () => {
-    it('when X-Forwarded-Proto is missing.', async (done) => {
+    it('when X-Forwarded-Proto is missing.', async () => {
       const app = pureHttp();
       app.use((req, res) => res.send(req.secure ? 'yes' : 'no'));
 
@@ -12,11 +12,9 @@ describe('request', () => {
       const res = await request.get('/');
 
       expect(res.text).toBe('no');
-
-      done();
     });
 
-    it('when X-Forwarded-Proto is present.', async (done) => {
+    it('when X-Forwarded-Proto is present.', async () => {
       const app = pureHttp();
       app.use((req, res) => res.send(req.secure ? 'yes' : 'no'));
 
@@ -25,11 +23,9 @@ describe('request', () => {
       const res = await request.get('/').set('X-Forwarded-Proto', 'https');
 
       expect(res.text).toBe('yes');
-
-      done();
     });
 
-    it(`should default to the socket addr if X-Forwarded-Proto not present.`, async (done) => {
+    it(`should default to the socket addr if X-Forwarded-Proto not present.`, async () => {
       const app = pureHttp();
       app.use((req, res) => {
         req.connection.encrypted = true;
@@ -42,13 +38,11 @@ describe('request', () => {
       const res = await request.get('/');
 
       expect(res.text).toBe('yes');
-
-      done();
     });
   });
 
   describe('.hostname', () => {
-    it('should return the string.', async (done) => {
+    it('should return the string.', async () => {
       const app = pureHttp();
       app.use((req, res) => res.send(req.hostname));
 
@@ -56,13 +50,11 @@ describe('request', () => {
       const res = await request.get('/');
 
       expect(res.text).toBe('127.0.0.1');
-
-      done();
     });
   });
 
   describe('.host', () => {
-    it('should return the string.', async (done) => {
+    it('should return the string.', async () => {
       const app = pureHttp();
       app.use((req, res) => res.send(req.host));
 
@@ -70,13 +62,11 @@ describe('request', () => {
       const res = await request.get('/');
 
       expect(res.text).toBe('127.0.0.1');
-
-      done();
     });
   });
 
   describe('.port', () => {
-    it('should return the number.', async (done) => {
+    it('should return the number.', async () => {
       const app = pureHttp();
       app.use((req, res) => res.send(req.port.toString()));
 
@@ -84,11 +74,9 @@ describe('request', () => {
       const res = await request.get('/');
 
       expect(typeof parseInt(res.text, 10) === 'number').toBe(true);
-
-      done();
     });
 
-    it('should return 80.', async (done) => {
+    it('should return 80.', async () => {
       const app = pureHttp();
       app.use((req, res) => {
         req.headers.host = 'example.com';
@@ -100,11 +88,9 @@ describe('request', () => {
       const res = await request.get('/');
 
       expect(typeof parseInt(res.text, 10) === 'number').toBe(true);
-
-      done();
     });
 
-    it('should return 443.', async (done) => {
+    it('should return 443.', async () => {
       const app = pureHttp();
       app.use((req, res) => {
         req.headers.host = 'example.com';
@@ -116,13 +102,11 @@ describe('request', () => {
       const res = await request.get('/').set('X-Forwarded-Proto', 'https');
 
       expect(typeof parseInt(res.text, 10) === 'number').toBe(true);
-
-      done();
     });
   });
 
   describe('.path', () => {
-    it('should return the string.', async (done) => {
+    it('should return the string.', async () => {
       const app = pureHttp();
       app.use((req, res) => res.send(req.path));
 
@@ -130,8 +114,6 @@ describe('request', () => {
       const res = await request.get('/');
 
       expect(res.text).toBe('/');
-
-      done();
     });
   });
 });

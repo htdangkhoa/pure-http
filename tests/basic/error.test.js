@@ -1,5 +1,5 @@
 describe('The middleware is not a function.', () => {
-  it(`Should be throw the error.`, async (done) => {
+  it(`Should be throw the error.`, (done) => {
     // eslint-disable-next-line global-require
     const pureHttp = require('../..');
 

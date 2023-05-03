@@ -5,7 +5,7 @@ const pureHttp = require('../..');
 
 describe('cookie', () => {
   describe('res.cookie', () => {
-    it(`The 'foo' should be equal 'bar'.`, async (done) => {
+    it(`The 'foo' should be equal 'bar'.`, async () => {
       const app = pureHttp();
       app.use('/', (req, res) => {
         res.cookie('foo', 'bar');
@@ -19,11 +19,9 @@ describe('cookie', () => {
       const cookies = res.headers['set-cookie'];
 
       expect(cookies.includes('foo=bar; Path=/')).toBe(true);
-
-      done();
     });
 
-    it(`The 'foo' should be equal 'bar' with sameSite=true.`, async (done) => {
+    it(`The 'foo' should be equal 'bar' with sameSite=true.`, async () => {
       const app = pureHttp();
       app.use('/', (req, res) => {
         res.cookie('foo', 'bar', { sameSite: true });
@@ -37,11 +35,9 @@ describe('cookie', () => {
       const cookies = res.headers['set-cookie'];
 
       expect(cookies.includes('foo=bar; Path=/; SameSite=Strict')).toBe(true);
-
-      done();
     });
 
-    it(`The 'foo' should be equal 'bar' with sameSite=strict.`, async (done) => {
+    it(`The 'foo' should be equal 'bar' with sameSite=strict.`, async () => {
       const app = pureHttp();
       app.use('/', (req, res) => {
         res.cookie('foo', 'bar', { sameSite: 'strict' });
@@ -55,11 +51,9 @@ describe('cookie', () => {
       const cookies = res.headers['set-cookie'];
 
       expect(cookies.includes('foo=bar; Path=/; SameSite=Strict')).toBe(true);
-
-      done();
     });
 
-    it(`The 'foo' should be equal 'bar' with sameSite=lax.`, async (done) => {
+    it(`The 'foo' should be equal 'bar' with sameSite=lax.`, async () => {
       const app = pureHttp();
       app.use('/', (req, res) => {
         res.cookie('foo', 'bar', { sameSite: 'lax' });
@@ -73,11 +67,9 @@ describe('cookie', () => {
       const cookies = res.headers['set-cookie'];
 
       expect(cookies.includes('foo=bar; Path=/; SameSite=Lax')).toBe(true);
-
-      done();
     });
 
-    it(`The 'foo' should be equal 'bar' with sameSite=none.`, async (done) => {
+    it(`The 'foo' should be equal 'bar' with sameSite=none.`, async () => {
       const app = pureHttp();
       app.use('/', (req, res) => {
         res.cookie('foo', 'bar', { sameSite: 'none' });
@@ -91,11 +83,9 @@ describe('cookie', () => {
       const cookies = res.headers['set-cookie'];
 
       expect(cookies.includes('foo=bar; Path=/; SameSite=None')).toBe(true);
-
-      done();
     });
 
-    it(`The 'foo' should be equal 'bar' with signed=true.`, async (done) => {
+    it(`The 'foo' should be equal 'bar' with signed=true.`, async () => {
       const app = pureHttp();
       app.use(cookieParser('cat'));
       app.use('/', (req, res) => {
@@ -112,11 +102,9 @@ describe('cookie', () => {
       const expectValue = encodeURIComponent(`s:${sign('bar', 'cat')}`);
 
       expect(cookies.includes(`foo=${expectValue}; Path=/`)).toBe(true);
-
-      done();
     });
 
-    it(`The 'foo' should be equal '{ "ping": "pong" }'.`, async (done) => {
+    it(`The 'foo' should be equal '{ "ping": "pong" }'.`, async () => {
       const app = pureHttp();
       app.use('/', (req, res) => {
         res.cookie('foo', { ping: 'pong' });
@@ -134,8 +122,6 @@ describe('cookie', () => {
       );
 
       expect(cookies.includes(`foo=${expectValue}; Path=/`)).toBe(true);
-
-      done();
     });
 
     it(`The status should be 500 with wrong maxAge type.`, async () => {
@@ -191,7 +177,7 @@ describe('cookie', () => {
   });
 
   describe('res.clearCookie', () => {
-    it(`The 'foo' should be empty.`, async (done) => {
+    it(`The 'foo' should be empty.`, async () => {
       const app = pureHttp();
       app.use((req, res, next) => {
         res.cookie('foo', 'bar');
@@ -210,8 +196,6 @@ describe('cookie', () => {
       const cookies = res.headers['set-cookie'];
 
       expect(!!cookies.find((cookie) => cookie.startsWith('foo=;'))).toBe(true);
-
-      done();
     });
   });
 

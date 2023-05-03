@@ -62,7 +62,7 @@ app.get('/', (req, res) => {
 app.listen(3000);
 ```
 
-Exist server:
+Existing server:
 
 ```js
 const http = require('http');
