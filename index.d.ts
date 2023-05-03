@@ -45,6 +45,8 @@ declare module 'pure-http' {
 
     query?: Record<string, string>;
 
+    body?: any;
+
     header(name: string): undefined | string | string[];
   }
 
