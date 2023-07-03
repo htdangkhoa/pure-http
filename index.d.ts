@@ -46,8 +46,8 @@ declare module 'pure-http' {
     query?: Record<string, any>;
 
     params?: {
-      [key: string]: any,
-      wild?: string
+      [key: string]: any;
+      wild?: string;
     };
 
     body?: any;
@@ -242,9 +242,9 @@ declare module 'pure-http' {
 
     all(path: string | RegExp, ...handler: Array<Handler>): this;
 
-    use(...middlewares: Array<Handler>): this;
+    use(...middlewares: Array<Handler | IRouter>): this;
 
-    use(path?: string | RegExp, ...middlewares: Array<Handler>): this;
+    use(path?: string | RegExp, ...middlewares: Array<Handler | IRouter>): this;
 
     use(errorHandler: ErrorHandler): this;
   }
