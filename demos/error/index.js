@@ -26,4 +26,4 @@ app.use((error, req, res, next) => {
   res.send('test.', 500);
 });
 
-app.listen(4000, () => console.log('Server is listening on port 3000...'));
+app.listen(3000, () => console.log('Server is listening on port 3000...'));
