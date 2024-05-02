@@ -1,7 +1,7 @@
 const supertest = require('supertest');
 const pureHttp = require('../..');
 
-describe('configs', () => {
+describe('settings', () => {
   it('should set and get configs', async () => {
     const app = pureHttp();
     app.set('foo', 'bar');

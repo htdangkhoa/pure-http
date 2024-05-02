@@ -20,16 +20,16 @@ module.exports = function (options) {
     cookieParser(),
     timeout('30s'),
     (req, res, next) => {
-      res.cache.has({});
-      res.cache.get({});
+      req.app.cache.has({});
+      req.app.cache.get({});
 
-      res.cache.set('/get-cache', {
+      req.app.cache.set('/get-cache', {
         raw: JSON.stringify('data'),
         method: 'GET',
         headers: { 'X-Timezone': 'Asia/Ho_Chi_Minh' },
       });
 
-      res.cache.set('/override-key', {
+      req.app.cache.set('/override-key', {
         raw: JSON.stringify('data'),
         method: 'POST',
         headers: { 'X-Timezone': 'Asia/Ho_Chi_Minh' },
@@ -69,8 +69,8 @@ module.exports = function (options) {
     res.jsonp({ '&': '\u2028<script>\u2029' }, true, { escape: true });
   });
 
-  app.all('/error', (req, res) => {
-    res.cache.set({}, 'error');
+  app.all('/error', (req) => {
+    req.app.cache.set({}, 'error');
   });
 
   return app;
