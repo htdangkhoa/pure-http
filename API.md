@@ -1,28 +1,52 @@
 # API References
 
-## Application & Router
+## Application
 
-- Application Options:
+### Options:
 
-  - `server`: Allows to optionally override the HTTP server instance to be used.
+- `server`: Allows to optionally override the HTTP server instance to be used.
 
-    > Default: `undefined`.
+  > Default: `undefined`.
 
-  - `views`: An object to configuration [render](#resrenderview--options--callback) function.
+- `views`: An object to configuration [render](#resrenderview--options--callback) function.
 
-    > Default: `undefined`.
+  > Default: `undefined`.
 
-    - `dir`: A directory for the application's views.
+  - `dir`: A directory for the application's views.
 
-    - `ext`: The default engine extension to use when omitted.
+  - `ext`: The default engine extension to use when omitted.
 
-    - `engine`: Registers the given template engine.
+  - `engine`: Registers the given template engine.
 
-- Router Options:
+### Properties:
 
-  - `prefix`: Allow append the path before each route.
+- `cache`: An instance of the [Cache](#Cache) class.
 
-    > Default: `undefined`.
+- `settings`: An object that contains the application settings.
+
+- `views`: An object that contains the application's views configuration.
+
+### Methods:
+
+The `pure-http` is an instance of the `http.Server` class, so you can use all methods from the [Node.js HTTP module](https://nodejs.org/api/http.html). Additionally `pure-http` provides methods of the [Router](#Router) class and some other methods.
+
+#### app.set(name, value)
+
+> Assigns setting name to value. You may store any value that you want, but certain names can be used to configure the behavior of the server.
+
+#### app.get(name)
+
+> Returns the value of name setting.
+
+## Router
+
+### Options:
+
+- `prefix`: Allow append the path before each route.
+
+  > Default: `undefined`.
+
+### Methods:
 
 #### get(route, handler [, handler...])
 
@@ -72,6 +96,12 @@
 
 The req object is an enhanced version of Node’s own request object and supports all [built-in fields and methods](https://nodejs.org/api/http.html#http_class_http_incomingmessage).
 
+### Properties
+
+#### req.app
+
+> Contains a reference to the instance of the `pure-http` that the request is being processed by. This allows you to access the methods and properties of the `pure-http` instance. See [Application](#Application).
+
 #### req.body
 
 > Contains key-value pairs of data submitted in the request body. By default, it is `undefined`, and is populated when you use body-parsing middleware.
@@ -112,13 +142,17 @@ The req object is an enhanced version of Node’s own request object and support
 
 > This property is an object containing a property for each query string parameter in the route. When query parser is set to disabled, it is an empty object `{}`, otherwise it is the result of the configured query parser.
 
+### Methods
+
+#### req.header(name)
+
+> Returns the specified HTTP request header field (case-insensitive match).
+
 ## Response
 
 The res object is an enhanced version of Node’s own response object and supports all [built-in fields and methods](https://nodejs.org/api/http.html#http_class_http_serverresponse).
 
-#### res.cache
-
-> Get [Cache](#Cache) from application options.
+### Methods
 
 #### res.header(name, value)
 
@@ -173,6 +207,22 @@ The res object is an enhanced version of Node’s own response object and suppor
 > Sets the HTTP status for the response. It is a chainable alias of Node’s [response.statusCode](http://nodejs.org/api/http.html#http_response_statuscode).
 
 ## Cache
+
+### Options:
+
+- `max`: The maximum number of items that can be stored in the cache.
+
+  > Default: `Infinity`.
+
+- `maxAge`: The maximum age of an item in the cache.
+
+  > Default: `0`.
+
+- `stale`: Allow stale items to be returned until they are removed from the cache.
+
+  > Default: `false`.
+
+### Methods:
 
 #### clear()
 

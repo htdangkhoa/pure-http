@@ -108,3 +108,5 @@ dist
 .tern-port
 
 jest.config.js
+
+junit.xml
