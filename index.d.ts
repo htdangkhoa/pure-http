@@ -53,6 +53,8 @@ declare module 'pure-http' {
     body?: any;
 
     header(name: string): undefined | string | string[];
+
+    app: IPureHttpServer | IPureHttpSecureServer;
   }
 
   export interface IRequestHttp extends http.IncomingMessage, IRequest {}
@@ -269,9 +271,14 @@ declare module 'pure-http' {
     stale?: boolean;
   }
 
-  export interface IPureHttpServer extends net.Server, IRouter {}
+  export interface ILocals {
+    set(key: string, value: any): this;
+    get<T = any>(key: string): T;
+  }
 
-  export interface IPureHttpSecureServer extends tls.Server, IRouter {}
+  export interface IPureHttpServer extends net.Server, IRouter, ILocals {}
+
+  export interface IPureHttpSecureServer extends tls.Server, IRouter, ILocals {}
 
   export interface IOptions {
     server?: net.Server | tls.Server;
