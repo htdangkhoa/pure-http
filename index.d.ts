@@ -1,7 +1,7 @@
-import net from 'net';
-import tls from 'tls';
-import http from 'http';
-import http2 from 'http2';
+import * as net from 'net';
+import * as tls from 'tls';
+import * as http from 'http';
+import * as http2 from 'http2';
 
 declare module 'pure-http' {
   export interface ICookieSerializeOptions {
@@ -271,14 +271,15 @@ declare module 'pure-http' {
     stale?: boolean;
   }
 
-  export interface ILocals {
-    set(key: string, value: any): this;
+  export interface IApplication extends IRouter {
+    set(key: string, value: any): void;
     get<T = any>(key: string): T;
+    get(path: string | RegExp, ...handler: Array<Handler>): this;
   }
 
-  export interface IPureHttpServer extends net.Server, IRouter, ILocals {}
+  export interface IPureHttpServer extends net.Server, IApplication {}
 
-  export interface IPureHttpSecureServer extends tls.Server, IRouter, ILocals {}
+  export interface IPureHttpSecureServer extends tls.Server, IApplication {}
 
   export interface IOptions {
     server?: net.Server | tls.Server;
