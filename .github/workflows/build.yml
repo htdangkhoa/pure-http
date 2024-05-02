@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['10', '12', '14', '16', '18']
+        node: ['16', '18', '20']
 
     name: Node ${{ matrix.node }} testing
 
@@ -38,6 +38,14 @@ jobs:
 
       - name: Test
         run: yarn test:cov
+
+      - name: Test report with Node ${{ matrix.node }}
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test report with Node ${{ matrix.node }}
+          path: junit.xml
+          reporter: jest-junit
 
       - name: Coveralls
         uses: coverallsapp/github-action@v1.1.2
