@@ -4,19 +4,6 @@ import * as http from 'http';
 import * as http2 from 'http2';
 
 declare module 'pure-http' {
-  export enum Method {
-    GET = 'get',
-    POST = 'post',
-    PUT = 'put',
-    PATCH = 'patch',
-    DELETE = 'delete',
-    HEAD = 'head',
-    OPTIONS = 'options',
-    TRACE = 'trace',
-    CONNECT = 'connect',
-    ALL = 'all',
-  }
-
   export interface ICookieSerializeOptions {
     encode?(value: string): string;
 
