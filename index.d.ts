@@ -4,6 +4,19 @@ import * as http from 'http';
 import * as http2 from 'http2';
 
 declare module 'pure-http' {
+  export enum Method {
+    GET = 'get',
+    POST = 'post',
+    PUT = 'put',
+    PATCH = 'patch',
+    DELETE = 'delete',
+    HEAD = 'head',
+    OPTIONS = 'options',
+    TRACE = 'trace',
+    CONNECT = 'connect',
+    ALL = 'all',
+  }
+
   export interface ICookieSerializeOptions {
     encode?(value: string): string;
 
@@ -210,17 +223,25 @@ declare module 'pure-http' {
     extends http2.Http2ServerResponse,
       IResponse {}
 
+  export type IHandlerRequest = IRequestHttp | IRequestHttp2;
+
+  export type IHandlerResponse = IResponseHttp | IResponseHttp2;
+
+  export interface IHandlerNext {
+    (error?: unknown): void;
+  }
+
   export type Handler = (
-    req: IRequestHttp | IRequestHttp2,
-    res: IResponseHttp | IResponseHttp2,
-    next: (error?: unknown) => void,
+    req: IHandlerRequest,
+    res: IHandlerResponse,
+    next: IHandlerNext,
   ) => void | Promise<unknown>;
 
   export type ErrorHandler = (
     error: Error,
-    req: IRequestHttp | IRequestHttp2,
-    res: IResponseHttp | IResponseHttp2,
-    next: (error?: unknown) => void,
+    req: IHandlerRequest,
+    res: IHandlerResponse,
+    next: IHandlerNext,
   ) => void | Promise<unknown>;
 
   export interface IRouter {
